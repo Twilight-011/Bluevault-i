@@ -6,22 +6,22 @@
   :root {
     --background: 0 0% 100%; /* White */
     --foreground: 240 10% 3.9%;
-    --card: 60 30% 96%;
+    --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
-    --popover: 60 30% 96%;
+    --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     --primary: 147 38% 47%; /* Sea Green */
     --primary-foreground: 0 0% 98%;
-    --secondary: 60 25% 88%;
+    --secondary: 60 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
-    --muted: 60 25% 88%;
+    --muted: 60 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 197 71% 73%; /* Sky Blue */
     --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 60 20% 85%;
-    --input: 60 20% 85%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
     --ring: 147 38% 47%;
     --chart-1: 147 38% 47%;
     --chart-2: 197 71% 73%;
@@ -29,13 +29,13 @@
     --chart-4: 43 74% 66%;
     --chart-5: 12 76% 61%;
     --radius: 0.5rem;
-    --sidebar-background: 60 30% 96%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 10% 3.9%;
     --sidebar-primary: 147 38% 47%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 60 25% 88%;
+    --sidebar-accent: 60 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 60 20% 85%;
+    --sidebar-border: 240 5.9% 90%;
     --sidebar-ring: 147 38% 47%;
   }
 

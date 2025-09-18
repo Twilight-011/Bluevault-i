@@ -32,7 +32,7 @@ const formSchema = z.object({
   password: z.string().min(8, {
     message: 'Password must be at least 8 characters.',
   }),
-  role: z.enum(['field-officer', 'ngo-manager', 'stakeholder', 'admin'], {
+  role: z.enum(['field-officer', 'ngo-manager', 'company', 'government-admin'], {
     required_error: 'You need to select a role.',
   }),
 });
@@ -107,11 +107,11 @@ export function LoginForm() {
                 <SelectContent>
                   <SelectItem value="field-officer">Field Officer</SelectItem>
                   <SelectItem value="ngo-manager">NGO Manager</SelectItem>
-                  <SelectItem value="stakeholder">
-                    Government
+                  <SelectItem value="company">
+                    Company
                   </SelectItem>
-                  <SelectItem value="admin">
-                    Admin
+                  <SelectItem value="government-admin">
+                    Government/Admin
                   </SelectItem>
                 </SelectContent>
               </Select>

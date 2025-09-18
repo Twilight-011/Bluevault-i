@@ -13,6 +13,8 @@ import {
   ShieldCheck,
   Store,
   Users,
+  Building,
+  UserCog,
 } from 'lucide-react';
 
 import {
@@ -55,25 +57,31 @@ export default function DashboardLayout({
       href: '/dashboard/field-officer',
       icon: HardHat,
       label: 'Field Officer',
-      roles: ['field-officer'],
     },
     {
       href: '/dashboard/ngo-manager',
       icon: Users,
       label: 'NGO Manager',
-      roles: ['ngo-manager'],
     },
     {
       href: '/dashboard/stakeholder',
       icon: ShieldCheck,
       label: 'Stakeholder',
-      roles: ['stakeholder'],
+    },
+    {
+      href: '/dashboard/company',
+      icon: Building,
+      label: 'Company',
+    },
+    {
+      href: '/dashboard/government-admin',
+      icon: UserCog,
+      label: 'Government/Admin',
     },
     {
       href: '/dashboard/mrv-report',
       icon: FileText,
       label: 'MRV Reports',
-      roles: ['ngo-manager'],
     },
   ];
 
