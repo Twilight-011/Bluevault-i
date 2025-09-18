@@ -1,7 +1,6 @@
 'use client';
 import { DataInputForm } from '@/components/field-officer/data-input-form';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription, Button } from '@/components/ui';
 import { Siren, Wind, Droplets, Leaf, BarChart2 } from 'lucide-react';
 import { useAlerts } from '@/context/alert-context';
 import { PostCreator } from '@/components/field-officer/post-creator';

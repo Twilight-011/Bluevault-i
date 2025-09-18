@@ -8,9 +8,11 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  Button,
+} from '@/components/ui';
 import { ArrowUpRight, Building, Leaf } from 'lucide-react';
 import Link from 'next/link';
 import { placeholderImages } from '@/lib/placeholder-images';

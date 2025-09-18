@@ -6,18 +6,16 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter
-} from '@/components/ui/card';
-import {
+  CardFooter,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+  Badge,
+  Button,
+} from '@/components/ui';
 import { Briefcase, TrendingUp, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { companyPortfolios, type CompanyPortfolioData } from '@/lib/company-portfolios';

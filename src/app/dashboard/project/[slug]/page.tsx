@@ -6,12 +6,15 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+  ChartContainer,
+  ChartTooltipContent,
+  ChartConfig,
+  ChartLegendContent,
+} from '@/components/ui';
 import { placeholderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
-import { ChartContainer, ChartTooltipContent, ChartConfig, ChartLegendContent } from '@/components/ui/chart';
 
 const projects = [
   {

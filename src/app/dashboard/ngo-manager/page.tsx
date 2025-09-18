@@ -8,17 +8,19 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+  Button,
+  ScrollArea,
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  Badge,
+} from '@/components/ui';
 import { ArrowUpRight, Siren, Users, Leaf, BarChart2 } from 'lucide-react';
 import Link from 'next/link';
 import { useAlerts } from '@/context/alert-context';
 import { formatDistanceToNow } from 'date-fns';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { PostCreator } from '@/components/field-officer/post-creator';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
-import { Badge } from '@/components/ui/badge';
 import { ListCreditsDialog } from '@/components/ngo-manager/list-credits-dialog';
 
 const farmers = [

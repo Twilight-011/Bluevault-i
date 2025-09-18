@@ -7,10 +7,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+  CardFooter,
+  Badge,
+  Button,
+} from '@/components/ui';
 import { ArrowDown, ArrowUp, Minus, Store, Leaf, Calendar, Star, ShieldCheck, ShoppingCart, Info } from 'lucide-react';
 import Link from 'next/link';
 import { BuyCreditsDialog } from './buy-credits-dialog';

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'BlueVault',
   description: 'A platform for mangrove conservation and carbon credit management.',
   icons: {
-    icon: `data:image/svg+xml;base64,${btoa('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13H2a10 10 0 0 0 10 10zM2 13a10 10 0 0 1 10-10 9.8 9.8 0 0 1 7 3l-2.5 2.5a6 6 0 0 0-4.5-1.5 6 6 0 0 0-6 6H2z"></path></svg>')}`,
+    icon: `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY1MzQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjAgMTRiLTMuMzQgMy4zNCAwIDAgMC0zLjc1IDVBMi41IDIuNSAwIDAgMSAxMyAyMmgxYTkuNjIgOS42MiAwIDAgMCA4LTljLTMuMzMtMy4zNC01LTYtOCAtaiIvPjxwYXRoIGQ9Ik00IDEwYy42OS0uNDMgMS4zMi0uODMgMi0xLjQxQTEwLjIgMTAuMiAwIDAgMSA4IDZMMTAgNGwtMSA1TDQgNWwtMyA4aDZhNi4zNyA2LjM3IDAgMCAxIDEtNmwuNDEtMS41OUExMC4xIDEwLjEgMCAwIDAgNCAxMFoiLz48L3N2Zz4=`,
   },
 };
 

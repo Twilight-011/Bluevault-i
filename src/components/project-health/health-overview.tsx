@@ -6,13 +6,11 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import {
   ChartContainer,
   ChartTooltipContent,
   ChartConfig,
   ChartLegendContent,
-} from '@/components/ui/chart';
+} from '@/components/ui';
 
 const chartData = [
   {

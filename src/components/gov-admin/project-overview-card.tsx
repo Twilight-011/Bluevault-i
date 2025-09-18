@@ -6,12 +6,12 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+  Button,
+  Progress,
+  Badge,
+  Switch,
+  Label,
+} from '@/components/ui';
 import {
   Thermometer,
   Wind,

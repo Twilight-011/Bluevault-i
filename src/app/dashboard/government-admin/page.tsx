@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-} from '@/components/ui/card';
+} from '@/components/ui';
 import {
   Briefcase,
   CheckCircle2,

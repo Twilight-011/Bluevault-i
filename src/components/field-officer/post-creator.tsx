@@ -4,28 +4,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
+import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Card, CardContent, CardDescription, CardHeader, CardTitle, Textarea, Input } from '@/components/ui';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Send, Image as ImageIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useSocialFeed } from '@/context/social-feed-context';
-import { Input } from '../ui/input';
 
 const formSchema = z.object({
   postContent: z.string().min(10, {

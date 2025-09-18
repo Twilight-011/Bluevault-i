@@ -7,24 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useSearchParams } from 'next/navigation';
 import { generateDynamicMRVReport } from '@/ai/flows/generate-dynamic-mrv-report';
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Button, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Textarea, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { useToast } from '@/hooks/use-toast';
 import { FileText, Loader2, Sparkles } from 'lucide-react';
 

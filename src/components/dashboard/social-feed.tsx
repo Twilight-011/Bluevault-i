@@ -7,12 +7,14 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  Button,
+} from '@/components/ui';
 import { placeholderImages } from '@/lib/placeholder-images';
 import { useSocialFeed } from '@/context/social-feed-context';
 import { formatDistanceToNow } from 'date-fns';
-import { Button } from '../ui/button';
 import { Heart, MessageCircle, Send, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';

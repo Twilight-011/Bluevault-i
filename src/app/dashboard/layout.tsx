@@ -12,17 +12,12 @@ import {
   Briefcase,
 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
+import { Button, Sheet, SheetContent, SheetTrigger } from '@/components/ui';
 import { UserNav } from '@/components/dashboard/user-nav';
 import { usePathname } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 import { PanelLeft } from 'lucide-react';
 
 
@@ -127,7 +122,7 @@ export default function DashboardLayout({
             );
         case 'ngo-manager':
              return allNavItems.filter(item => 
-                !['company', 'government-admin', 'companies', 'field-officers', 'ngos'].includes(item.role)
+                !['company', 'government-admin', 'companies', 'field-officers', 'ngos'].includes(item.role) && item.role !== 'ngos'
             );
         case 'company':
             return allNavItems.filter(item => 
@@ -147,19 +142,17 @@ export default function DashboardLayout({
   return (
       <div className="w-full min-h-screen flex-col bg-muted/40 lg:grid lg:grid-cols-[1fr]">
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-card px-4 sm:px-6">
-          <div className="flex items-center gap-4">
-             <Link
-              href="/dashboard"
-              className="flex items-center gap-2 text-foreground"
-            >
-              <div className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base">
-                <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
-              </div>
-              <span className="font-bold text-lg">BlueVault</span>
-            </Link>
-          </div>
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-2 text-foreground"
+          >
+            <div className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base">
+              <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
+            </div>
+            <span className="font-bold text-lg">BlueVault</span>
+          </Link>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-1 items-center justify-end gap-4">
              <Sheet>
               <SheetTrigger asChild>
                 <Button size="icon" variant="outline" className="sm:hidden">

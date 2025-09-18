@@ -6,16 +6,16 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-} from '@/components/ui/card';
-import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from '@/components/ui';
 import { HardHat, Users } from 'lucide-react';
 import { placeholderImages } from '@/lib/placeholder-images';
 
