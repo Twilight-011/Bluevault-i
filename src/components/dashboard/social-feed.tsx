@@ -26,9 +26,9 @@ export default function SocialFeed() {
   return (
     <div className="space-y-8">
       {isExplorePage && (
-         <Card>
-            <CardHeader>
-                <CardTitle className="font-headline">Explore</CardTitle>
+         <Card className="bg-transparent shadow-none border-none">
+            <CardHeader className="text-center">
+                <CardTitle className="font-headline text-3xl">Updates</CardTitle>
                 <CardDescription>A live feed of updates from all stakeholders.</CardDescription>
             </CardHeader>
         </Card>
@@ -66,6 +66,7 @@ export default function SocialFeed() {
                     <div className="text-xs text-muted-foreground">
                       {formatDistanceToNow(item.timestamp, { addSuffix: true })}
                     </div>
+
                   </div>
                   <p className="text-xs text-muted-foreground">
                     @{item.handle.replace(' ', '')}
