@@ -75,6 +75,9 @@ export default function SocialFeed() {
         const avatar = placeholderImages.find(
           (img) => img.id === item.avatarId
         );
+        const postImage = placeholderImages.find(
+          (img) => img.id === item.imageId
+        );
         
         return (
           <Card key={item.id} className="shadow-lg">
@@ -111,12 +114,15 @@ export default function SocialFeed() {
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-sm">{item.content}</p>
-              {item.imageId && (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border bg-muted flex items-center justify-center">
-                  <div className="text-center text-muted-foreground">
-                    <ImageIcon className="h-10 w-10 mx-auto mb-2" />
-                    <p className="font-semibold">Image Coming Soon</p>
-                  </div>
+              {postImage && (
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                  <Image
+                    src={postImage.imageUrl}
+                    alt={postImage.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={postImage.imageHint}
+                  />
                 </div>
               )}
             </CardContent>
