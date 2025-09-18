@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Siren, Wind, Droplets, Leaf, BarChart2 } from 'lucide-react';
 import { useAlerts } from '@/context/alert-context';
 import { PostCreator } from '@/components/field-officer/post-creator';
-import SocialFeed from '@/components/dashboard/social-feed';
 
 function StatCard({ icon: Icon, label, value, unit }: {icon: React.ElementType, label: string, value: string, unit: string}) {
     return (
@@ -62,7 +61,6 @@ export default function FieldOfficerDashboard() {
       </div>
       <div className="grid auto-rows-max gap-8">
         <PostCreator />
-        <SocialFeed />
       </div>
     </div>
   );

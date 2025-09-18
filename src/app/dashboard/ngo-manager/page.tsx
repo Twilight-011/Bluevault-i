@@ -17,13 +17,30 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { PostCreator } from '@/components/field-officer/post-creator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
-import SocialFeed from '@/components/dashboard/social-feed';
+import { Badge } from '@/components/ui/badge';
+import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
 
 const farmers = [
   { name: 'Anjali Sharma', location: 'Sunderbans Sector 4B', avatarId: 'avatar-4' },
   { name: 'Vikram Singh', location: 'Mahanadi Delta', avatarId: 'avatar-5' },
   { name: 'Priya Patel', location: 'Pichavaram Forest', avatarId: 'avatar-6' },
 ];
+
+const projects = [
+    { name: "Sunderbans Restoration", tCO2e: "5,000", healthScore: 92, slug: 'sunderbans-restoration' },
+    { name: "Pichavaram Initiative", tCO2e: "2,500", healthScore: 95, slug: 'pichavaram-initiative' },
+    { name: "Mahanadi Delta Project", tCO2e: "12,000", healthScore: 85, slug: 'mahanadi-delta-project' },
+    { name: "Godavari Estuary Greens", tCO2e: "8,000", healthScore: 78, slug: 'godavari-estuary-greens' },
+]
+
+const HealthBadge = ({ score }: { score: number }) => {
+  let variant: 'default' | 'secondary' | 'destructive' = 'default';
+  if (score < 80) variant = 'destructive';
+  if (score >= 80 && score < 90) variant = 'secondary';
+  return (
+    <Badge variant={variant} className="w-[50px] flex justify-center">{score}</Badge>
+  );
+};
 
 export default function NgoManagerDashboard() {
   const { alerts, clearAlerts } = useAlerts();
@@ -75,24 +92,23 @@ export default function NgoManagerDashboard() {
                     <CardDescription>Overview of your organization's projects.</CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4 md:grid-cols-2">
-                    <div className="p-4 border rounded-lg">
-                        <h3 className="font-semibold">Sunderbans Restoration</h3>
-                        <p className="text-sm text-muted-foreground">Generated 5,000 tCO2e</p>
-                        <Button variant="link" size="sm" className="px-0" asChild>
-                            <Link href="/dashboard/project/sunderbans-restoration">
-                                View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-                            </Link>
-                        </Button>
-                    </div>
-                     <div className="p-4 border rounded-lg">
-                        <h3 className="font-semibold">Pichavaram Initiative</h3>
-                        <p className="text-sm text-muted-foreground">Generated 2,500 tCO2e</p>
-                         <Button variant="link" size="sm" className="px-0" asChild>
-                            <Link href="/dashboard/project/pichavaram-initiative">
-                                View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-                            </Link>
-                        </Button>
-                    </div>
+                    {projects.map(project => (
+                        <div key={project.name} className="p-4 border rounded-lg flex flex-col justify-between">
+                            <div>
+                                <h3 className="font-semibold">{project.name}</h3>
+                                <p className="text-sm text-muted-foreground">Generated {project.tCO2e} tCO₂e</p>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <p className="text-sm font-medium">Health:</p>
+                                    <HealthBadge score={project.healthScore} />
+                                </div>
+                            </div>
+                             <Button variant="link" size="sm" className="px-0 self-start mt-2" asChild>
+                                <Link href={`/dashboard/project/${project.slug}`}>
+                                    View Project <ArrowUpRight className="ml-1 h-4 w-4" />
+                                </Link>
+                            </Button>
+                        </div>
+                    ))}
                 </CardContent>
                  <CardFooter>
                     <Button asChild className="w-full">
@@ -102,6 +118,10 @@ export default function NgoManagerDashboard() {
                     </Button>
                 </CardFooter>
             </Card>
+            <CarbonCreditMarket />
+        </div>
+        <div className="grid auto-rows-max gap-8">
+            <PostCreator />
             <Card className="shadow-lg">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><Users /> Affiliated Farmers</CardTitle>
@@ -129,10 +149,6 @@ export default function NgoManagerDashboard() {
                     </ScrollArea>
                 </CardContent>
             </Card>
-        </div>
-        <div className="grid auto-rows-max gap-8">
-            <PostCreator />
-            <SocialFeed />
         </div>
     </div>
   );
