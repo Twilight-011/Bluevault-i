@@ -8,7 +8,7 @@ export default function LoginPage() {
   const loginImage = placeholderImages.find((img) => img.id === 'login-hero');
 
   return (
-    <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2">
+    <div className="w-full lg:grid lg:h-screen lg:grid-cols-2">
       <div className="relative hidden h-full bg-gray-100 lg:block">
         {loginImage && (
           <Image
@@ -26,7 +26,7 @@ export default function LoginPage() {
           <p className="mt-2 text-lg">Your trusted partner in mangrove conservation.</p>
         </div>
       </div>
-      <div className="flex items-center justify-center p-6 sm:p-12 min-h-screen">
+      <div className="flex items-center justify-center p-6 sm:p-12 h-screen lg:h-full">
         <div className="mx-auto grid w-full max-w-[400px] gap-6">
           <div className="grid gap-2 text-center">
             <Leaf className="h-10 w-10 text-primary mx-auto" />
