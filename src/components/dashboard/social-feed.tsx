@@ -16,7 +16,6 @@ import { placeholderImages } from '@/lib/placeholder-images';
 import { useSocialFeed } from '@/context/social-feed-context';
 import { formatDistanceToNow } from 'date-fns';
 import { Heart, MessageCircle, Send } from 'lucide-react';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -77,9 +76,6 @@ export default function SocialFeed() {
         const avatar = placeholderImages.find(
           (img) => img.id === item.avatarId
         );
-        const postImage = placeholderImages.find(
-          (img) => img.id === item.imageId
-        );
         
         return (
           <Card key={item.id} className="shadow-lg">
@@ -115,18 +111,7 @@ export default function SocialFeed() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="mb-4 text-sm">{item.content}</p>
-              {postImage ? (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                  <Image
-                    src={postImage.imageUrl}
-                    alt={postImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={postImage.imageHint}
-                  />
-                </div>
-              ) : null}
+              <p className="text-sm">{item.content}</p>
             </CardContent>
             <CardFooter>
                 <PostActions />

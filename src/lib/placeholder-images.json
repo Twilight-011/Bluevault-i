@@ -96,36 +96,6 @@
         "description": "Close up of mangrove roots in the water.",
         "imageUrl": "https://picsum.photos/seed/mangrove-roots/1280/400",
         "imageHint": "mangrove roots"
-    },
-    {
-      "id": "post-image-1",
-      "description": "A beautiful sunset over a mangrove forest.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-sunset/600/400",
-      "imageHint": "mangrove sunset"
-    },
-    {
-      "id": "post-image-2",
-      "description": "A tangled mess of mangrove roots at low tide.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-tangle/600/400",
-      "imageHint": "mangrove roots"
-    },
-    {
-      "id": "post-image-3",
-      "description": "A kingfisher bird perched on a mangrove branch.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-bird/600/400",
-      "imageHint": "bird mangrove"
-    },
-    {
-      "id": "post-image-4",
-      "description": "A quiet creek winding through a mangrove forest.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-creek/600/400",
-      "imageHint": "mangrove creek"
-    },
-     {
-      "id": "post-image-5",
-      "description": "A community meeting near a coastal mangrove area.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-community/600/400",
-      "imageHint": "community meeting"
     }
   ]
 }

@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
@@ -9,7 +10,6 @@ interface FeedItem {
   avatarId: string;
   timestamp: Date;
   content: string;
-  imageId?: string;
 }
 
 interface NewFeedItem {
@@ -17,7 +17,6 @@ interface NewFeedItem {
     handle: string;
     avatarId: string;
     content: string;
-    imageId?: string;
 }
 
 interface SocialFeedContextType {
@@ -33,7 +32,6 @@ const initialFeedItems: FeedItem[] = [
     avatarId: 'avatar-5',
     timestamp: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
     content: 'The new batch of Avicennia marina saplings have arrived for the Mahanadi Delta project! Excited to get these in the ground.',
-    imageId: 'post-image-4',
   },
   {
     id: 6,
@@ -42,7 +40,6 @@ const initialFeedItems: FeedItem[] = [
     avatarId: 'avatar-7',
     timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
     content: 'Just finished a community workshop on sustainable fishing practices near the Pichavaram mangroves. The engagement was fantastic!',
-    imageId: 'post-image-5',
   },
   {
     id: 5,
@@ -51,7 +48,6 @@ const initialFeedItems: FeedItem[] = [
     avatarId: 'avatar-1',
     timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
     content: 'Our latest drone footage shows incredible growth in the Pichavaram sector. The canopy is denser than ever! #ReforestationSuccess',
-    imageId: 'post-image-2',
   },
   {
     id: 4,
@@ -60,7 +56,6 @@ const initialFeedItems: FeedItem[] = [
     avatarId: 'avatar-6',
     timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
     content: 'A beautiful sunrise over the newly planted saplings. Moments like these make the hard work worth it. #Hope #Mangroves',
-    imageId: 'post-image-1',
   },
   {
     id: 3,
@@ -79,7 +74,6 @@ const initialFeedItems: FeedItem[] = [
     timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000),
     content:
       'Spotted a rare species of kingfisher near Site B today. A good sign of improving biodiversity. #conservation #mangroves',
-    imageId: 'post-image-3',
   },
   {
     id: 1,
