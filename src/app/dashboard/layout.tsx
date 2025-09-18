@@ -148,15 +148,19 @@ export default function DashboardLayout({
       <div className="w-full min-h-screen flex-col bg-muted/40 lg:grid lg:grid-cols-[1fr]">
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-card px-4 sm:px-6">
           <div className="flex items-center gap-4">
-            <Link
+             <Link
               href="/dashboard"
-              className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+              className="flex items-center gap-2 text-foreground"
             >
-              <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
-              <span className="sr-only">BlueVault</span>
+              <div className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base">
+                <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
+              </div>
+              <span className="font-bold text-lg">BlueVault</span>
             </Link>
+          </div>
 
-            <Sheet>
+          <div className="flex items-center gap-4">
+             <Sheet>
               <SheetTrigger asChild>
                 <Button size="icon" variant="outline" className="sm:hidden">
                   <PanelLeft className="h-5 w-5" />
@@ -194,9 +198,7 @@ export default function DashboardLayout({
                 </nav>
               </SheetContent>
             </Sheet>
-          </div>
 
-          <div className="flex items-center gap-4">
              <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
                {navItems.map((item) => (
                   <Link
