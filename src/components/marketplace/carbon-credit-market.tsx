@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, ArrowUp, ArrowUpRight, Minus, Store, Leaf, Calendar, Star, ShieldCheck, ShoppingCart, Info } from 'lucide-react';
+import { ArrowDown, ArrowUp, Minus, Store, Leaf, Calendar, Star, ShieldCheck, ShoppingCart, Info } from 'lucide-react';
 import Link from 'next/link';
 import { BuyCreditsDialog } from './buy-credits-dialog';
 
@@ -56,8 +56,8 @@ const initialCredits: Credit[] = [
     vintage: 2023,
     standard: 'VCS',
     rating: 4.4,
-    seller: 'Amazon Trust',
-    type: 'Forest'
+    seller: 'Coastal Guardians',
+    type: 'Blue Carbon'
   },
   {
     project: 'Pichavaram Initiative',
@@ -70,7 +70,7 @@ const initialCredits: Credit[] = [
     vintage: 2024,
     standard: 'Gold Standard',
     rating: 4.6,
-    seller: 'EcoRestore Ltd',
+    seller: 'GreenFuture Foundation',
     type: 'Blue Carbon'
   },
    {
@@ -84,7 +84,7 @@ const initialCredits: Credit[] = [
     vintage: 2023,
     standard: 'VCS',
     rating: 4.2,
-    seller: 'GreenWave Org',
+    seller: 'GreenFuture Foundation',
     type: 'Blue Carbon'
   },
     {
@@ -98,7 +98,7 @@ const initialCredits: Credit[] = [
     vintage: 2024,
     standard: 'Gold Standard',
     rating: 4.7,
-    seller: 'Delta Conservation',
+    seller: 'Ocean Foundation',
     type: 'Blue Carbon'
   },
     {
@@ -113,6 +113,34 @@ const initialCredits: Credit[] = [
     standard: 'VCS',
     rating: 4.5,
     seller: 'Urban Oasis',
+    type: 'Forest'
+  },
+   {
+    project: 'Maldives Atoll Conservation',
+    slug: 'maldives-atoll-conservation',
+    location: 'Maldives',
+    price: 3150.00,
+    healthScore: 91,
+    available: 7500,
+    trend: 'up',
+    vintage: 2024,
+    standard: 'Gold Standard',
+    rating: 4.9,
+    seller: 'Island Futures',
+    type: 'Blue Carbon'
+  },
+  {
+    project: 'Amazon Delta Initiative',
+    slug: 'amazon-delta-initiative',
+    location: 'Brazil',
+    price: 1450.75,
+    healthScore: 94,
+    available: 25000,
+    trend: 'stable',
+    vintage: 2023,
+    standard: 'VCS',
+    rating: 4.7,
+    seller: 'Amazon Trust',
     type: 'Forest'
   },
 ];
@@ -262,7 +290,7 @@ export function CarbonCreditMarket({ role }: { role: string | null }) {
             Carbon Credit Marketplace
           </CardTitle>
           <CardDescription>
-            Invest in verified carbon credits from mangrove restoration projects. Prices in INR.
+            Invest in verified carbon credits from mangrove restoration projects. Prices are indicative.
           </CardDescription>
         </CardHeader>
       </Card>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -39,7 +40,9 @@ const projects = [
     { name: "Mahanadi Delta Project", carbonCredits: 12000, healthScore: 85, slug: 'mahanadi-delta-project' },
     { name: "Godavari Estuary Greens", carbonCredits: 8000, healthScore: 78, slug: 'godavari-estuary-greens' },
     { name: "Krishna Mangrove Regeneration", carbonCredits: 6500, healthScore: 90, slug: 'krishna-mangrove-regeneration' },
-    { name: "Mumbai Coastal Protection", carbonCredits: 3000, healthScore: 88, slug: 'mumbai-coastal-protection' }
+    { name: "Mumbai Coastal Protection", carbonCredits: 3000, healthScore: 88, slug: 'mumbai-coastal-protection' },
+    { name: "Maldives Atoll Conservation", carbonCredits: 7500, healthScore: 91, slug: 'maldives-atoll-conservation' },
+    { name: "Amazon Delta Initiative", carbonCredits: 25000, healthScore: 94, slug: 'amazon-delta-initiative' }
 ]
 
 const HealthBadge = ({ score }: { score: number }) => {

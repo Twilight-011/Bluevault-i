@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Card,
@@ -60,6 +61,22 @@ const projects = [
     description: "A crucial urban mangrove project aimed at protecting Mumbai's coastline from erosion and sea-level rise, creating a green lung for the city.",
     heroImageId: 'project-hero-2',
     carbonCredits: '3,000'
+  },
+  {
+    slug: 'maldives-atoll-conservation',
+    name: 'Maldives Atoll Conservation',
+    location: 'Maldives',
+    description: "Protecting the fragile coral-based ecosystems of the Maldives through targeted mangrove restoration on various atolls.",
+    heroImageId: 'project-hero-3',
+    carbonCredits: '7,500'
+  },
+  {
+    slug: 'amazon-delta-initiative',
+    name: 'Amazon Delta Initiative',
+    location: 'Brazil',
+    description: "A large-scale conservation effort at the mouth of the Amazon River, focusing on one of the world's most extensive and biodiverse mangrove systems.",
+    heroImageId: 'project-hero-4',
+    carbonCredits: '25,000'
   },
 ];
 

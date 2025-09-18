@@ -9,6 +9,7 @@ import {
   Landmark,
   Compass,
   Store,
+  Briefcase,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -62,6 +63,18 @@ const allNavItems = [
     icon: Store,
     label: 'Marketplace',
   },
+  {
+    role: 'companies',
+    href: '/dashboard/companies',
+    icon: Briefcase,
+    label: 'Companies',
+  },
+  {
+    role: 'ngos',
+    href: '/dashboard/ngos',
+    icon: Users,
+    label: 'NGOs',
+  },
 ];
 
 export default function DashboardLayout({
@@ -81,7 +94,8 @@ export default function DashboardLayout({
   }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
-    if (!userRole || targetRole === 'dashboard' || targetRole === 'marketplace') {
+    const alwaysAllowed = ['dashboard', 'marketplace', 'companies', 'ngos'];
+    if (!userRole || alwaysAllowed.includes(targetRole) ) {
       return;
     }
 
@@ -107,15 +121,15 @@ export default function DashboardLayout({
             );
         case 'ngo-manager':
             return allNavItems.filter(item => 
-                ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role)
+                ['dashboard', 'ngo-manager', 'marketplace', 'ngos'].includes(item.role)
             );
         case 'company':
             return allNavItems.filter(item => 
-                ['dashboard', 'company', 'marketplace'].includes(item.role)
+                ['dashboard', 'company', 'marketplace', 'companies'].includes(item.role)
             );
         case 'government-admin':
-            return allNavItems.filter(item => 
-                ['dashboard', 'government-admin', 'marketplace'].includes(item.role)
+             return allNavItems.filter(item => 
+                ['dashboard', 'government-admin', 'marketplace', 'companies', 'ngos'].includes(item.role)
             );
         default:
             return allNavItems.filter(item => item.role === 'dashboard');
