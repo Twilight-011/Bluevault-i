@@ -140,18 +140,18 @@ export default function NgoManagerDashboard() {
                 </CardHeader>
                 <CardContent>
                     <ScrollArea className="h-96">
-                        <div className="space-y-4">
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-6">
                             {farmers.map(farmer => {
                                 const avatar = placeholderImages.find(p => p.id === farmer.avatarId);
                                 return (
-                                    <div key={farmer.name} className="flex items-center gap-4">
-                                        <Avatar>
+                                    <div key={farmer.name} className="flex items-center gap-3">
+                                        <Avatar className="h-8 w-8">
                                             {avatar && <AvatarImage src={avatar.imageUrl} alt={farmer.name} data-ai-hint={avatar.imageHint} />}
                                             <AvatarFallback>{farmer.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                                         </Avatar>
                                         <div>
-                                            <p className="font-semibold">{farmer.name}</p>
-                                            <p className="text-sm text-muted-foreground">{farmer.location}</p>
+                                            <p className="font-semibold text-sm">{farmer.name}</p>
+                                            <p className="text-xs text-muted-foreground">{farmer.location}</p>
                                         </div>
                                     </div>
                                 )
