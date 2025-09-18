@@ -114,17 +114,12 @@ export default function SocialFeed() {
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-sm">{item.content}</p>
-              {postImage && (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                  <Image
-                    src={postImage.imageUrl}
-                    alt={postImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={postImage.imageHint}
-                  />
+              {item.imageId ? (
+                <div className="flex aspect-video w-full flex-col items-center justify-center rounded-lg border bg-muted">
+                    <ImageIcon className="h-10 w-10 text-muted-foreground" />
+                    <p className="mt-2 text-sm text-muted-foreground">Image Coming Soon</p>
                 </div>
-              )}
+              ) : null}
             </CardContent>
             <CardFooter>
                 <PostActions />

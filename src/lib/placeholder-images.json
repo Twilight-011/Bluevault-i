@@ -4,134 +4,128 @@
     {
       "id": "login-hero",
       "description": "A lush mangrove forest with intricate root systems in clear water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/1280/1920",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/login/1280/1920",
+      "imageHint": "mangrove forest"
     },
     {
       "id": "avatar-1",
       "description": "A close-up of a mangrove leaf.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/leaf/100/100",
+      "imageHint": "mangrove leaf"
     },
     {
       "id": "avatar-2",
       "description": "Sunlight filtering through the mangrove canopy onto the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/sunlight/100/100",
+      "imageHint": "mangrove canopy"
     },
     {
       "id": "avatar-3",
       "description": "A solitary mangrove tree in calm water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/solitary/100/100",
+      "imageHint": "mangrove tree"
     },
     {
       "id": "avatar-4",
       "description": "The intricate root system of a mangrove.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
+      "imageUrl": "https://picsum.photos/seed/roots/100/100",
       "imageHint": "mangrove roots"
     },
     {
       "id": "avatar-5",
       "description": "A dense grove of young mangrove trees.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/grove/100/100",
+      "imageHint": "mangrove grove"
     },
     {
       "id": "avatar-6",
       "description": "A view from within a mangrove forest looking out.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/forest-view/100/100",
+      "imageHint": "mangrove forest"
     },
     {
       "id": "avatar-7",
       "description": "A mangrove sapling sprouting from the mud.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/sapling/100/100",
+      "imageHint": "mangrove sapling"
     },
      {
       "id": "avatar-8",
       "description": "The edge of a mangrove coastline.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/coastline/100/100",
+      "imageHint": "mangrove coast"
     },
     {
       "id": "avatar-9",
       "description": "The textured bark of a mangrove tree.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/bark/100/100",
+      "imageHint": "tree bark"
     },
     {
       "id": "avatar-10",
       "description": "An aerial view of a mangrove delta.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/delta-aerial/100/100",
+      "imageHint": "mangrove delta"
     },
     {
       "id": "avatar-11",
       "description": "A mangrove flower.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/100/100",
-      "imageHint": "mangrove roots"
+      "imageUrl": "https://picsum.photos/seed/flower/100/100",
+      "imageHint": "mangrove flower"
     },
     {
         "id": "project-hero-1",
         "description": "A dense mangrove forest with a narrow water channel.",
-        "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/1280/400",
-        "imageHint": "mangrove roots"
+        "imageUrl": "https://picsum.photos/seed/mangrove-channel/1280/400",
+        "imageHint": "mangrove channel"
     },
     {
         "id": "project-hero-2",
         "description": "Sunlight filtering through mangrove leaves.",
-        "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/1280/400",
-        "imageHint": "mangrove roots"
+        "imageUrl": "https://picsum.photos/seed/mangrove-sunlight/1280/400",
+        "imageHint": "mangrove leaves"
     },
     {
         "id": "project-hero-3",
         "description": "A wide shot of a mangrove coastline.",
-        "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/1280/400",
-        "imageHint": "mangrove roots"
+        "imageUrl": "https://picsum.photos/seed/mangrove-coastline/1280/400",
+        "imageHint": "mangrove coast"
     },
     {
         "id": "project-hero-4",
         "description": "Close up of mangrove roots in the water.",
-        "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/1280/400",
+        "imageUrl": "https://picsum.photos/seed/mangrove-roots/1280/400",
         "imageHint": "mangrove roots"
     },
     {
       "id": "post-image-1",
-      "description": "Mangrove roots in the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/600/400",
-      "imageHint": "mangrove roots"
+      "description": "A beautiful sunset over a mangrove forest.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-sunset/600/400",
+      "imageHint": "mangrove sunset"
     },
     {
       "id": "post-image-2",
-      "description": "Mangrove roots in the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/600/400",
+      "description": "A tangled mess of mangrove roots at low tide.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-tangle/600/400",
       "imageHint": "mangrove roots"
     },
     {
       "id": "post-image-3",
-      "description": "Mangrove roots in the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/600/400",
-      "imageHint": "mangrove roots"
+      "description": "A kingfisher bird perched on a mangrove branch.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-bird/600/400",
+      "imageHint": "bird mangrove"
     },
     {
       "id": "post-image-4",
-      "description": "Mangrove roots in the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/600/400",
-      "imageHint": "mangrove roots"
+      "description": "A quiet creek winding through a mangrove forest.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-creek/600/400",
+      "imageHint": "mangrove creek"
     },
      {
       "id": "post-image-5",
-      "description": "Mangrove roots in the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/600/400",
-      "imageHint": "mangrove roots"
-    },
-    {
-      "id": "post-image-upload",
-      "description": "Mangrove roots in the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-roots-water/600/400",
-      "imageHint": "mangrove roots"
+      "description": "A community meeting near a coastal mangrove area.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-community/600/400",
+      "imageHint": "community meeting"
     }
   ]
 }
