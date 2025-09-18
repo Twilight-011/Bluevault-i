@@ -16,6 +16,7 @@ import {
   Building,
   UserCog,
   Landmark,
+  Compass,
 } from 'lucide-react';
 
 import {
@@ -47,6 +48,12 @@ import { usePathname } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 
 const allNavItems = [
+   {
+    role: 'dashboard',
+    href: '/dashboard',
+    icon: Compass,
+    label: 'Explore',
+  },
   {
     role: 'field-officer',
     href: '/dashboard/field-officer',
@@ -86,9 +93,12 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const { toast } = useToast();
-  const role = pathname.split('/')[2];
+  const role = pathname.split('/')[2] || 'dashboard';
 
   const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
+    // Allow navigation to explore page
+    if (targetRole === 'dashboard') return;
+
     if (role && targetRole !== role) {
       e.preventDefault();
       toast({
@@ -99,7 +109,7 @@ export default function DashboardLayout({
     }
   };
 
-  const navItems = role ? allNavItems.filter(item => item.role === role) : allNavItems;
+  const navItems = role ? allNavItems.filter(item => item.role === role || item.role === 'dashboard') : allNavItems;
 
 
   const getBreadcrumb = () => {
@@ -107,17 +117,17 @@ export default function DashboardLayout({
     if (parts.length === 1 && parts[0] === 'dashboard') {
        return (
         <BreadcrumbItem>
-            <BreadcrumbPage>Home</BreadcrumbPage>
+            <BreadcrumbPage>Explore</BreadcrumbPage>
         </BreadcrumbItem>
        )
     }
     if (parts.length > 1) {
-      const currentItem = allNavItems.find(item => item.href === `/${parts[0]}/${parts[1]}`);
+      const currentItem = allNavItems.find(item => item.href === `/${parts.join('/')}`);
       return (
         <>
           <BreadcrumbItem>
              <BreadcrumbLink asChild>
-                <Link href={`/dashboard`}>Dashboard</Link>
+                <Link href={`/dashboard`}>Explore</Link>
              </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -144,14 +154,14 @@ export default function DashboardLayout({
               <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
               <span className="sr-only">BlueVault</span>
             </Link>
-            {allNavItems.map((item) => (
+            {navItems.map((item) => (
               <Tooltip key={item.label}>
                 <TooltipTrigger asChild>
                   <Link
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.role)}
                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8 ${
-                      pathname.startsWith(item.href)
+                      pathname === item.href
                         ? 'bg-accent text-accent-foreground'
                         : 'text-muted-foreground hover:text-foreground'
                     }`}
@@ -183,7 +193,7 @@ export default function DashboardLayout({
                     <Leaf className="h-5 w-5 transition-all group-hover:scale-110" />
                     <span className="sr-only">BlueVault</span>
                   </Link>
-                  {allNavItems.map((item) => (
+                  {navItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}

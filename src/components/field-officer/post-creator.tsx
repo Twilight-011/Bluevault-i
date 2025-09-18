@@ -21,9 +21,10 @@ import {
 } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Send } from 'lucide-react';
+import { Loader2, Send, Image as ImageIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useSocialFeed } from '@/context/social-feed-context';
+import { Input } from '../ui/input';
 
 const formSchema = z.object({
   postContent: z.string().min(10, {
@@ -31,6 +32,7 @@ const formSchema = z.object({
   }).max(280, {
     message: 'Post must not be longer than 280 characters.'
   }),
+  postImage: z.any().optional(),
 });
 
 export function PostCreator() {
@@ -53,6 +55,7 @@ export function PostCreator() {
             handle: 'Field Officer',
             avatarId: 'avatar-2',
             content: values.postContent,
+            imageId: values.postImage ? 'post-image-upload' : undefined
         });
       toast({
         title: 'Post Published',
@@ -90,6 +93,21 @@ export function PostCreator() {
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+             <FormField
+              control={form.control}
+              name="postImage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Attach Image</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                       <ImageIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                       <Input type="file" className="pl-10" {...field} />
+                    </div>
+                  </FormControl>
                 </FormItem>
               )}
             />

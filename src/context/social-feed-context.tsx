@@ -9,6 +9,7 @@ interface FeedItem {
   avatarId: string;
   timestamp: Date;
   content: string;
+  imageId?: string;
 }
 
 interface NewFeedItem {
@@ -16,6 +17,7 @@ interface NewFeedItem {
     handle: string;
     avatarId: string;
     content: string;
+    imageId?: string;
 }
 
 interface SocialFeedContextType {
@@ -24,6 +26,24 @@ interface SocialFeedContextType {
 }
 
 const initialFeedItems: FeedItem[] = [
+  {
+    id: 5,
+    user: 'GreenFuture Foundation',
+    handle: 'NGO Manager',
+    avatarId: 'avatar-1',
+    timestamp: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    content: 'Our latest drone footage shows incredible growth in the Pichavaram sector. The canopy is denser than ever! #ReforestationSuccess',
+    imageId: 'post-image-2',
+  },
+  {
+    id: 4,
+    user: 'Priya Patel',
+    handle: 'Field Officer',
+    avatarId: 'avatar-6',
+    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    content: 'A beautiful sunrise over the newly planted saplings. Moments like these make the hard work worth it. #Hope #Mangroves',
+    imageId: 'post-image-1',
+  },
   {
     id: 3,
     user: 'Eco Corp.',
@@ -41,6 +61,7 @@ const initialFeedItems: FeedItem[] = [
     timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000),
     content:
       'Spotted a rare species of kingfisher near Site B today. A good sign of improving biodiversity. #conservation #mangroves',
+    imageId: 'post-image-3',
   },
   {
     id: 1,

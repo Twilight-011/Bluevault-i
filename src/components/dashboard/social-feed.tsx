@@ -5,60 +5,99 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
 import { ScrollArea } from '../ui/scroll-area';
 import { useSocialFeed } from '@/context/social-feed-context';
 import { formatDistanceToNow } from 'date-fns';
+import { Button } from '../ui/button';
+import { Heart, MessageCircle, Send } from 'lucide-react';
+import Image from 'next/image';
 
 export default function SocialFeed() {
   const { feedItems } = useSocialFeed();
 
   return (
-    <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle className="font-headline">Project Updates</CardTitle>
-        <CardDescription>A live feed of updates from all stakeholders.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ScrollArea className="h-[400px] pr-4">
-          <div className="space-y-6">
-            {feedItems.map((item, index) => {
-              const avatar = placeholderImages.find(
-                (img) => img.id === item.avatarId
-              );
-              return (
-                <div key={index} className="flex items-start gap-4">
-                  <Avatar>
-                    {avatar && (
-                      <AvatarImage
-                        src={avatar.imageUrl}
-                        alt={item.user}
-                        data-ai-hint={avatar.imageHint}
-                      />
-                    )}
-                    <AvatarFallback>
-                      {item.user.charAt(0)}
-                      {item.user.includes(' ') ? item.user.split(' ')[1].charAt(0) : ''}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <div className="font-semibold">{item.user}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {formatDistanceToNow(item.timestamp, { addSuffix: true })}
-                      </div>
+    <div className="space-y-8">
+        <Card>
+            <CardHeader>
+                <CardTitle className="font-headline">Explore</CardTitle>
+                <CardDescription>A live feed of updates from all stakeholders.</CardDescription>
+            </CardHeader>
+        </Card>
+      {feedItems.map((item) => {
+        const avatar = placeholderImages.find(
+          (img) => img.id === item.avatarId
+        );
+        const postImage = item.imageId ? placeholderImages.find(
+          (img) => img.id === item.imageId
+        ) : null;
+
+        return (
+          <Card key={item.id} className="shadow-lg">
+            <CardHeader>
+              <div className="flex items-start gap-4">
+                <Avatar>
+                  {avatar && (
+                    <AvatarImage
+                      src={avatar.imageUrl}
+                      alt={item.user}
+                      data-ai-hint={avatar.imageHint}
+                    />
+                  )}
+                  <AvatarFallback>
+                    {item.user.charAt(0)}
+                    {item.user.includes(' ')
+                      ? item.user.split(' ')[1].charAt(0)
+                      : ''}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <div className="font-semibold">{item.user}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {formatDistanceToNow(item.timestamp, { addSuffix: true })}
                     </div>
-                    <p className="text-xs text-muted-foreground">@{item.handle.replace(' ', '')}</p>
-                    <p className="mt-2 text-sm">{item.content}</p>
                   </div>
+                  <p className="text-xs text-muted-foreground">
+                    @{item.handle.replace(' ', '')}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
-        </ScrollArea>
-      </CardContent>
-    </Card>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4 text-sm">{item.content}</p>
+              {postImage && (
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                  <Image
+                    src={postImage.imageUrl}
+                    alt={postImage.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={postImage.imageHint}
+                  />
+                </div>
+              )}
+            </CardContent>
+            <CardFooter className="flex justify-start gap-4 border-t pt-4">
+              <Button variant="ghost" size="sm">
+                <Heart className="mr-2 h-4 w-4" />
+                Like
+              </Button>
+              <Button variant="ghost" size="sm">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Comment
+              </Button>
+              <Button variant="ghost" size="sm">
+                <Send className="mr-2 h-4 w-4" />
+                Share
+              </Button>
+            </CardFooter>
+          </Card>
+        );
+      })}
+    </div>
   );
 }
