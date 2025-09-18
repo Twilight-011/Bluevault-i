@@ -127,7 +127,7 @@ export default function DashboardLayout({
             );
         case 'ngo-manager':
             return allNavItems.filter(item => 
-                ['dashboard', 'ngo-manager', 'marketplace', 'ngos'].includes(item.role)
+                ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role)
             );
         case 'company':
             return allNavItems.filter(item => 
@@ -145,7 +145,7 @@ export default function DashboardLayout({
   const navItems = getNavItems();
 
   return (
-      <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      <div className="w-full min-h-screen flex-col bg-muted/40 lg:grid lg:grid-cols-[1fr]">
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-card px-4 sm:px-6">
             <Link
               href="/dashboard"
