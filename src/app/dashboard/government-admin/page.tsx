@@ -13,8 +13,10 @@ import {
   Users,
   ArrowUp,
   Building,
+  HardHat,
 } from 'lucide-react';
 import { ProjectOverviewCard } from '@/components/gov-admin/project-overview-card';
+import Link from 'next/link';
 
 const statCards = [
   {
@@ -24,6 +26,7 @@ const statCards = [
     icon: Briefcase,
     color: 'bg-primary text-primary-foreground',
     changeColor: 'bg-primary-foreground/20 text-primary-foreground',
+    href: '#',
   },
   {
     label: 'Verified NGOs',
@@ -32,6 +35,7 @@ const statCards = [
     icon: Users,
     color: 'bg-card',
     changeColor: 'bg-green-100 text-green-700',
+    href: '/dashboard/ngos',
   },
   {
     label: 'Verified Companies',
@@ -40,6 +44,7 @@ const statCards = [
     icon: Building,
     color: 'bg-card',
     changeColor: 'bg-green-100 text-green-700',
+    href: '/dashboard/companies',
   },
   {
     label: 'Total Credits Verified',
@@ -48,6 +53,7 @@ const statCards = [
     icon: CheckCircle2,
     color: 'bg-green-50',
     changeColor: 'bg-green-100 text-green-700',
+    href: '#',
   },
 ];
 
@@ -149,6 +155,7 @@ function StatCard({
   change,
   color,
   changeColor,
+  href,
 }: {
   icon: React.ElementType;
   label: string;
@@ -156,26 +163,39 @@ function StatCard({
   change: string;
   color: string;
   changeColor: string;
+  href: string;
 }) {
-  return (
+  const CardContentWrapper = ({children}: {children: React.ReactNode}) => (
     <Card className={`shadow-md ${color}`}>
-      <CardHeader>
-        <div className="flex items-center gap-2">
-          <Icon className="h-5 w-5 text-muted-foreground" />
-          <CardTitle className="text-sm font-medium">{label}</CardTitle>
-        </div>
-      </CardHeader>
-      <CardContent className="flex items-center justify-between">
-        <div className="text-3xl font-bold">{value}</div>
-        <div
-          className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium ${changeColor}`}
-        >
-          {label !== 'Total Projects' && <ArrowUp className="h-3 w-3" />}
-          {change}
-        </div>
-      </CardContent>
+        {children}
     </Card>
-  );
+  )
+
+  const cardContent = (
+    <>
+    <CardHeader>
+      <div className="flex items-center gap-2">
+        <Icon className="h-5 w-5 text-muted-foreground" />
+        <CardTitle className="text-sm font-medium">{label}</CardTitle>
+      </div>
+    </CardHeader>
+    <CardContent className="flex items-center justify-between">
+      <div className="text-3xl font-bold">{value}</div>
+      <div
+        className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium ${changeColor}`}
+      >
+        {change && <ArrowUp className="h-3 w-3" />}
+        {change}
+      </div>
+    </CardContent>
+    </>
+  )
+
+  if (href && href !== '#') {
+    return <Link href={href}><CardContentWrapper>{cardContent}</CardContentWrapper></Link>;
+  }
+
+  return <CardContentWrapper>{cardContent}</CardContentWrapper>;
 }
 
 export default function GovernmentAdminDashboard() {

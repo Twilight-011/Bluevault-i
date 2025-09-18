@@ -75,6 +75,12 @@ const allNavItems = [
     icon: Users,
     label: 'NGOs',
   },
+  {
+    role: 'field-officers',
+    href: '/dashboard/field-officers',
+    icon: HardHat,
+    label: 'Field Officers',
+  }
 ];
 
 export default function DashboardLayout({
@@ -94,7 +100,7 @@ export default function DashboardLayout({
   }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
-    const alwaysAllowed = ['dashboard', 'marketplace', 'companies', 'ngos'];
+    const alwaysAllowed = ['dashboard', 'marketplace', 'companies', 'ngos', 'field-officers'];
     if (!userRole || alwaysAllowed.includes(targetRole) ) {
       return;
     }
@@ -111,7 +117,7 @@ export default function DashboardLayout({
 
   const getNavItems = () => {
     if (!userRole) {
-        return allNavItems.filter(item => item.role === 'dashboard');
+        return allNavItems.filter(item => ['dashboard', 'marketplace', 'companies', 'ngos'].includes(item.role));
     }
     
     switch (userRole) {
@@ -129,10 +135,10 @@ export default function DashboardLayout({
             );
         case 'government-admin':
              return allNavItems.filter(item => 
-                ['dashboard', 'government-admin', 'marketplace', 'companies', 'ngos'].includes(item.role)
+                ['dashboard', 'government-admin', 'marketplace', 'companies', 'ngos', 'field-officers'].includes(item.role)
             );
         default:
-            return allNavItems.filter(item => item.role === 'dashboard');
+            return allNavItems.filter(item => ['dashboard', 'marketplace', 'companies', 'ngos'].includes(item.role));
     }
   }
 

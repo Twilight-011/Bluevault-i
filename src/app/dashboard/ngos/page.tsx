@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { ArrowUpRight, Leaf, Users } from 'lucide-react';
+import { ArrowUpRight, Leaf, Users, HardHat } from 'lucide-react';
 import Link from 'next/link';
 import { placeholderImages } from '@/lib/placeholder-images';
 
@@ -22,7 +22,8 @@ const ngos = [
     description: 'Dedicated to restoring coastal ecosystems through community-led mangrove plantation and conservation efforts.',
     avatarId: 'avatar-1',
     totalCreditsGenerated: 58500,
-    projects: ['Pichavaram Initiative', 'Godavari Estuary Greens']
+    projects: ['Pichavaram Initiative', 'Godavari Estuary Greens'],
+    fieldOfficers: 12,
   },
   {
     name: 'Coastal Guardians',
@@ -30,7 +31,8 @@ const ngos = [
     description: 'Protecting marine biodiversity by restoring and preserving vital mangrove habitats along vulnerable coastlines.',
     avatarId: 'avatar-7',
     totalCreditsGenerated: 85000,
-    projects: ['Sunderbans Restoration', 'Mahanadi Delta Project']
+    projects: ['Sunderbans Restoration', 'Mahanadi Delta Project'],
+    fieldOfficers: 25,
   },
   {
     name: 'Ocean Foundation',
@@ -38,7 +40,8 @@ const ngos = [
     description: 'A leading organization focused on leveraging blue carbon solutions to combat climate change and support coastal communities.',
     avatarId: 'avatar-4',
     totalCreditsGenerated: 92000,
-    projects: ['Sunderbans Restoration', 'Krishna Mangrove Regeneration']
+    projects: ['Sunderbans Restoration', 'Krishna Mangrove Regeneration'],
+    fieldOfficers: 18,
   },
   {
     name: 'Urban Oasis',
@@ -46,7 +49,8 @@ const ngos = [
     description: 'Creating green spaces within urban environments, including the development and protection of urban mangrove ecosystems.',
     avatarId: 'avatar-11',
     totalCreditsGenerated: 15000,
-    projects: ['Mumbai Coastal Protection']
+    projects: ['Mumbai Coastal Protection'],
+    fieldOfficers: 8,
   }
 ];
 
@@ -56,12 +60,21 @@ export default function NGOsPage() {
     <div className="space-y-8">
        <Card className="shadow-none border-0 bg-transparent">
         <CardHeader className="px-0">
-          <CardTitle className="flex items-center gap-2 font-headline text-2xl">
-            <Users /> Registered NGOs
-          </CardTitle>
-          <CardDescription>
-            A directory of non-governmental organizations leading the charge in mangrove conservation.
-          </CardDescription>
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle className="flex items-center gap-2 font-headline text-2xl">
+                <Users /> Registered NGOs
+              </CardTitle>
+              <CardDescription>
+                A directory of non-governmental organizations leading the charge in mangrove conservation.
+              </CardDescription>
+            </div>
+            <Button asChild>
+                <Link href="/dashboard/field-officers">
+                    <HardHat className="mr-2 h-4 w-4" /> View Field Officers
+                </Link>
+            </Button>
+          </div>
         </CardHeader>
       </Card>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -85,11 +98,25 @@ export default function NGOsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">{ngo.description}</p>
-              <div className="flex items-center gap-2 p-3 rounded-lg bg-accent/50">
-                <Leaf className="h-5 w-5 text-primary" />
-                <p className="text-sm font-medium">
-                  Total Credits Generated: {ngo.totalCreditsGenerated.toLocaleString()} tCO₂e
-                </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-accent/50">
+                    <Leaf className="h-5 w-5 text-primary" />
+                    <div>
+                        <p className="text-sm font-medium">
+                        {ngo.totalCreditsGenerated.toLocaleString()} tCO₂e
+                        </p>
+                        <p className="text-xs text-muted-foreground">Credits Generated</p>
+                    </div>
+                </div>
+                 <div className="flex items-center gap-2 p-3 rounded-lg bg-accent/50">
+                    <HardHat className="h-5 w-5 text-primary" />
+                    <div>
+                        <p className="text-sm font-medium">
+                        {ngo.fieldOfficers}
+                        </p>
+                        <p className="text-xs text-muted-foreground">Field Officers</p>
+                    </div>
+                </div>
               </div>
             </CardContent>
             <CardFooter>
