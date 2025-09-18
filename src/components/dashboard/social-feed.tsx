@@ -10,13 +10,51 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
-import { ScrollArea } from '../ui/scroll-area';
 import { useSocialFeed } from '@/context/social-feed-context';
 import { formatDistanceToNow } from 'date-fns';
 import { Button } from '../ui/button';
 import { Heart, MessageCircle, Send } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
+
+function PostActions() {
+    const [liked, setLiked] = useState(false);
+    const { toast } = useToast();
+
+    const handleComment = () => {
+        toast({
+            title: "Comment Added",
+            description: "Your comment has been posted.",
+        });
+    }
+
+    const handleShare = () => {
+        toast({
+            title: "Post Shared",
+            description: "The post has been shared successfully.",
+        });
+    }
+
+    return (
+        <div className="flex justify-start gap-4 border-t pt-4">
+            <Button variant="ghost" size="sm" onClick={() => setLiked(!liked)}>
+                <Heart className={`mr-2 h-4 w-4 ${liked ? 'fill-red-500 text-red-500' : ''}`} />
+                Like
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleComment}>
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Comment
+            </Button>
+            <Button variant="ghost" size="sm" onClick={handleShare}>
+                <Send className="mr-2 h-4 w-4" />
+                Share
+            </Button>
+        </div>
+    )
+}
+
 
 export default function SocialFeed() {
   const { feedItems } = useSocialFeed();
@@ -88,19 +126,8 @@ export default function SocialFeed() {
                 </div>
               )}
             </CardContent>
-            <CardFooter className="flex justify-start gap-4 border-t pt-4">
-              <Button variant="ghost" size="sm">
-                <Heart className="mr-2 h-4 w-4" />
-                Like
-              </Button>
-              <Button variant="ghost" size="sm">
-                <MessageCircle className="mr-2 h-4 w-4" />
-                Comment
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Send className="mr-2 h-4 w-4" />
-                Share
-              </Button>
+            <CardFooter>
+                <PostActions />
             </CardFooter>
           </Card>
         );
