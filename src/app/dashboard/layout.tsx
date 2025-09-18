@@ -126,8 +126,8 @@ export default function DashboardLayout({
                 ['dashboard', 'field-officer'].includes(item.role)
             );
         case 'ngo-manager':
-            return allNavItems.filter(item => 
-                ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role)
+             return allNavItems.filter(item => 
+                !['company', 'government-admin', 'companies', 'field-officers', 'ngos'].includes(item.role)
             );
         case 'company':
             return allNavItems.filter(item => 
@@ -146,7 +146,8 @@ export default function DashboardLayout({
 
   return (
       <div className="w-full min-h-screen flex-col bg-muted/40 lg:grid lg:grid-cols-[1fr]">
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-card px-4 sm:px-6">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-card px-4 sm:px-6">
+          <div className="flex items-center gap-4">
             <Link
               href="/dashboard"
               className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
@@ -154,21 +155,6 @@ export default function DashboardLayout({
               <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
               <span className="sr-only">BlueVault</span>
             </Link>
-
-             <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-               {navItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.role)}
-                    className={cn(`transition-colors hover:text-foreground`,
-                       pathname === item.href ? 'text-foreground font-semibold' : 'text-muted-foreground'
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-            </nav>
 
             <Sheet>
               <SheetTrigger asChild>
@@ -208,10 +194,25 @@ export default function DashboardLayout({
                 </nav>
               </SheetContent>
             </Sheet>
+          </div>
 
-            <div className="relative ml-auto flex items-center gap-4 md:grow-0">
-                <UserNav />
-            </div>
+          <div className="flex items-center gap-4">
+             <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+               {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.role)}
+                    className={cn(`transition-colors hover:text-foreground`,
+                       pathname === item.href ? 'text-foreground font-semibold' : 'text-muted-foreground'
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+            </nav>
+            <UserNav />
+          </div>
 
           </header>
         <main className="flex-1 p-4 sm:px-6 sm:py-4 md:gap-8">
