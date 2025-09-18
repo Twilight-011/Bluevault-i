@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-  CardDescription,
 } from '@/components/ui/card';
 import {
   Briefcase,
@@ -14,8 +13,7 @@ import {
   Users,
   ArrowUp,
 } from 'lucide-react';
-import { DroneDataCard } from '@/components/gov-admin/drone-data-card';
-import { SmartContractCard } from '@/components/gov-admin/smart-contract-card';
+import { ProjectOverviewCard } from '@/components/gov-admin/project-overview-card';
 
 const statCards = [
   {
@@ -51,6 +49,53 @@ const statCards = [
     changeColor: 'bg-green-100 text-green-700',
   },
 ];
+
+const projects = [
+    {
+        flightId: 'DR-001',
+        projectName: 'Sundarbans Restoration',
+        location: 'Sundarbans, Bangladesh',
+        timestamp: '2 hours ago',
+        monitoringStatus: 'Verified',
+        temperature: '28.5°C',
+        humidity: '78%',
+        windSpeed: '12.3 km/h',
+        images: 156,
+        carbonCapture: 8.4,
+        ecosystemHealth: 92,
+        contract: '#0x1a2b3c...',
+        contractStatus: 'Active',
+        creditsMinted: 67500,
+        creditsTotal: 100000,
+        price: 45.2,
+        totalValue: 4520000,
+        participants: 234,
+        nextDistribution: 'Tomorrow',
+        autoMintEnabled: true,
+    },
+    {
+        flightId: 'DR-002',
+        projectName: 'Maldives Atoll Conservation',
+        location: 'Maldives Atoll',
+        timestamp: '4 hours ago',
+        monitoringStatus: 'Processing',
+        temperature: '31.2°C',
+        humidity: '85%',
+        windSpeed: '8.7 km/h',
+        images: 203,
+        carbonCapture: 6.7,
+        ecosystemHealth: 88,
+        contract: '#0x7g8h9i...',
+        contractStatus: 'Pending',
+        creditsMinted: 25000,
+        creditsTotal: 50000,
+        price: 38.5,
+        totalValue: 1925000,
+        participants: 89,
+        nextDistribution: 'In 3 days',
+        autoMintEnabled: false,
+    }
+]
 
 function StatCard({
   icon: Icon,
@@ -91,74 +136,19 @@ function StatCard({
 export default function GovernmentAdminDashboard() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold">BlueVault Dashboard</h1>
-        <p className="text-muted-foreground">
-          Oversee regulatory compliance and project verification
-        </p>
-      </div>
-
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {statCards.map((card) => (
           <StatCard key={card.label} {...card} />
         ))}
       </div>
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
-        <div className="lg:col-span-3 space-y-6">
-          <h2 className="text-xl font-semibold">Recent Drone Data</h2>
-          <DroneDataCard
-            flightId="DR-001"
-            location="Sundarbans, Bangladesh"
-            timestamp="2 hours ago"
-            status="Verified"
-            temperature="28.5°C"
-            humidity="78%"
-            windSpeed="12.3 km/h"
-            images={156}
-            carbonCapture={8.4}
-            ecosystemHealth={92}
-          />
-          <DroneDataCard
-            flightId="DR-002"
-            location="Maldives Atoll"
-            timestamp="4 hours ago"
-            status="Processing"
-            temperature="31.2°C"
-            humidity="85%"
-            windSpeed="8.7 km/h"
-            images={203}
-            carbonCapture={6.7}
-            ecosystemHealth={88}
-          />
-        </div>
-        <div className="lg:col-span-2 space-y-6">
-          <h2 className="text-xl font-semibold">Smart Contracts</h2>
-          <SmartContractCard
-            project="Sundarbans Restoration"
-            contract="#0x1a2b3c..."
-            status="Active"
-            creditsMinted={67500}
-            creditsTotal={100000}
-            price={45.2}
-            totalValue={4520000}
-            participants={234}
-            nextDistribution="Tomorrow"
-            autoMintEnabled={true}
-          />
-          <SmartContractCard
-            project="Mangrove Conservation"
-            contract="#0x7g8h9i..."
-            status="Pending"
-            creditsMinted={25000}
-            creditsTotal={50000}
-            price={38.5}
-            totalValue={1925000}
-            participants={89}
-            nextDistribution="In 3 days"
-            autoMintEnabled={false}
-          />
-        </div>
+      <div className="space-y-6">
+          <h2 className="text-xl font-semibold">Project Overview</h2>
+          <div className="grid grid-cols-1 gap-8">
+            {projects.map(project => (
+                <ProjectOverviewCard key={project.flightId} {...project} />
+            ))}
+          </div>
       </div>
     </div>
   );
