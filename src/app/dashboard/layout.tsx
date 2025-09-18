@@ -131,7 +131,7 @@ export default function DashboardLayout({
             );
         case 'company':
             return allNavItems.filter(item => 
-                ['dashboard', 'marketplace'].includes(item.role)
+                ['dashboard', 'company', 'marketplace'].includes(item.role)
             );
         case 'government-admin':
              return allNavItems.filter(item => 
