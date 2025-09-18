@@ -102,7 +102,7 @@ const TrendIcon = ({ trend }: { trend: 'up' | 'down' | 'stable' }) => {
   return <Minus className="h-4 w-4 text-muted-foreground" />;
 };
 
-export function CarbonCreditMarket() {
+export function CarbonCreditMarket({ role }: { role: string | null }) {
   const [credits, setCredits] = useState<Credit[]>(initialCredits);
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export function CarbonCreditMarket() {
               <TableHead className="text-center">Health</TableHead>
               <TableHead className="text-right">Price (INR)</TableHead>
               <TableHead className="text-right">Available (tCO2e)</TableHead>
-              <TableHead className="text-right">Action</TableHead>
+              {role !== 'ngo-manager' && <TableHead className="text-right">Action</TableHead>}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -169,12 +169,12 @@ export function CarbonCreditMarket() {
                 <TableCell className="text-right">
                   {credit.available.toLocaleString()}
                 </TableCell>
-                <TableCell className="text-right">
+                {role !== 'ngo-manager' && <TableCell className="text-right">
                   <Button size="sm" variant="outline">
                     <TrendingUp className="mr-2 h-4 w-4"/>
                     Trade
                   </Button>
-                </TableCell>
+                </TableCell>}
               </TableRow>
             ))}
           </TableBody>
