@@ -9,6 +9,7 @@ import {
   Building,
   Landmark,
   Compass,
+  Store,
 } from 'lucide-react';
 
 import {
@@ -58,6 +59,12 @@ const allNavItems = [
     icon: Landmark,
     label: 'Government/Admin',
   },
+   {
+    role: 'marketplace',
+    href: '/dashboard/marketplace',
+    icon: Store,
+    label: 'Marketplace',
+  },
 ];
 
 export default function DashboardLayout({
@@ -72,20 +79,35 @@ export default function DashboardLayout({
 
   useEffect(() => {
     const roleFromPath = pathname.split('/')[2];
-    if (roleFromPath && roleFromPath !== 'project' && roleFromPath !== 'mrv-report') {
+    if (roleFromPath && !['project', 'mrv-report', 'marketplace'].includes(roleFromPath)) {
       setCurrentRole(roleFromPath);
     } else if (pathname === '/dashboard') {
         setCurrentRole('dashboard'); // Special case for explore
+    } else if (pathname.startsWith('/dashboard/project') || pathname === '/dashboard/mrv-report' || pathname === '/dashboard/marketplace') {
+        // Persist role when navigating to sub-pages
+        if (!currentRole && typeof window !== 'undefined') {
+            const storedRole = localStorage.getItem('userRole');
+            if (storedRole) setCurrentRole(storedRole);
+        }
     }
-  }, [pathname]);
+
+  }, [pathname, currentRole]);
+
+  useEffect(() => {
+    if (currentRole && currentRole !== 'dashboard') {
+        localStorage.setItem('userRole', currentRole);
+    } else {
+        localStorage.removeItem('userRole')
+    }
+  }, [currentRole]);
   
   const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
-    if (targetRole === 'dashboard') return;
+    if (targetRole === 'dashboard' || targetRole === 'marketplace') return;
     
-    // Determine the user's actual role from the full path.
-    const userRole = pathname.split('/')[2];
+    // Determine the user's actual role from state.
+    const userRole = currentRole;
 
-    if (userRole && userRole !== 'project' && userRole !== 'mrv-report' && userRole !== targetRole) {
+    if (userRole && userRole !== 'dashboard' && userRole !== targetRole) {
       e.preventDefault();
       toast({
         variant: 'destructive',
@@ -95,14 +117,28 @@ export default function DashboardLayout({
     }
   };
 
-  const navItems = currentRole ? allNavItems.filter(item => {
-    // if a role is set (e.g. field-officer), show 'Explore' and that role's dashboard link
-    if (currentRole !== 'dashboard') {
-       return item.role === 'dashboard' || item.role === currentRole;
+  const getNavItems = () => {
+    if (!currentRole || currentRole === 'dashboard') {
+        return allNavItems.filter(item => !['field-officer', 'ngo-manager', 'company', 'government-admin', 'marketplace'].includes(item.role));
     }
-    // if we are on explore page, show all roles to allow selection
-    return true;
-  }) : allNavItems;
+
+    if (currentRole === 'field-officer') {
+        return allNavItems.filter(item => ['dashboard', 'field-officer'].includes(item.role));
+    }
+    if (currentRole === 'ngo-manager') {
+        return allNavItems.filter(item => ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role));
+    }
+     if (currentRole === 'company') {
+        return allNavItems.filter(item => ['dashboard', 'company', 'marketplace'].includes(item.role));
+    }
+    if (currentRole === 'government-admin') {
+        return allNavItems.filter(item => ['dashboard', 'government-admin', 'marketplace'].includes(item.role));
+    }
+
+    return allNavItems;
+  }
+
+  const navItems = getNavItems();
 
 
   const getBreadcrumb = () => {
@@ -110,10 +146,7 @@ export default function DashboardLayout({
     const isExplorePage = parts.length === 1 && parts[0] === 'dashboard';
 
     let currentPageLabel = '';
-    const roleFromPath = parts.includes('field-officer') ? 'field-officer' :
-                         parts.includes('ngo-manager') ? 'ngo-manager' :
-                         parts.includes('company') ? 'company' :
-                         parts.includes('government-admin') ? 'government-admin' : null;
+    const roleFromPath = currentRole && currentRole !== 'dashboard' ? currentRole : null;
 
     if (isExplorePage) {
        return (
@@ -143,7 +176,7 @@ export default function DashboardLayout({
         {currentPageLabel && <BreadcrumbSeparator />}
         {currentPageLabel && (
           <BreadcrumbItem>
-             {pathname.includes('/project/') || pathname.includes('/mrv-report') ? (
+             {pathname.includes('/project/') || pathname.includes('/mrv-report') || pathname.includes('/marketplace') ? (
                 <BreadcrumbLink asChild>
                     <Link href={`/dashboard/${roleFromPath}`}>{currentPageLabel}</Link>
                 </BreadcrumbLink>
@@ -154,11 +187,11 @@ export default function DashboardLayout({
              )}
           </BreadcrumbItem>
         )}
-         {(!currentPage && parts.length > 2 && !pathname.startsWith('/dashboard/project')) && <BreadcrumbSeparator />}
-         {(!currentPage && parts.length > 2 && !pathname.startsWith('/dashboard/project')) && (
-            <BreadcrumbItem>
+         {currentPage && currentPage.role === 'marketplace' && <BreadcrumbSeparator />}
+         {currentPage && currentPage.role === 'marketplace' && (
+             <BreadcrumbItem>
                 <BreadcrumbPage className="capitalize font-medium">
-                    {parts[parts.length-1].replace(/-/g, ' ')}
+                    {currentPage.label}
                 </BreadcrumbPage>
             </BreadcrumbItem>
          )}
@@ -166,10 +199,18 @@ export default function DashboardLayout({
           {pathname.startsWith('/dashboard/project') && parts.length > 2 && (
              <BreadcrumbItem>
                 <BreadcrumbPage className="capitalize font-medium">
-                    {parts[parts.length -1].replace(/-/g, ' ')}
+                    Project: {parts[parts.length -1].replace(/-/g, ' ')}
                 </BreadcrumbPage>
             </BreadcrumbItem>
           )}
+           {pathname.startsWith('/dashboard/mrv-report') && (
+            <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                    <BreadcrumbPage>MRV Report</BreadcrumbPage>
+                </BreadcrumbItem>
+            </>
+           )}
       </>
     );
   };
@@ -192,8 +233,7 @@ export default function DashboardLayout({
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.role)}
                     className={cn(`transition-colors hover:text-foreground`,
-                       pathname.startsWith(item.href) && item.href !== '/dashboard' ? 'text-foreground font-semibold' : 'text-muted-foreground',
-                       pathname === '/dashboard' && item.href === '/dashboard' ? 'text-foreground font-semibold' : ''
+                       pathname === item.href ? 'text-foreground font-semibold' : 'text-muted-foreground'
                     )}
                   >
                     {item.label}

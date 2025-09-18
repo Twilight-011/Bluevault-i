@@ -54,11 +54,14 @@ export function LoginForm() {
     setIsLoading(true);
     // Mock authentication
     setTimeout(() => {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('userRole', values.role);
+      }
       toast({
         title: 'Login Successful',
-        description: `Redirecting to ${values.role.replace('-', ' ')} dashboard...`,
+        description: `Redirecting to dashboard...`,
       });
-      router.push(`/dashboard/${values.role}`);
+      router.push(`/dashboard`);
       setIsLoading(false);
     }, 1000);
   }

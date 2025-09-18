@@ -18,19 +18,22 @@ import { PostCreator } from '@/components/field-officer/post-creator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
 import { Badge } from '@/components/ui/badge';
-import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
 
 const farmers = [
-  { name: 'Anjali Sharma', location: 'Sunderbans Sector 4B', avatarId: 'avatar-4' },
-  { name: 'Vikram Singh', location: 'Mahanadi Delta', avatarId: 'avatar-5' },
-  { name: 'Priya Patel', location: 'Pichavaram Forest', avatarId: 'avatar-6' },
+    { name: 'Anjali Sharma', location: 'Sunderbans Sector 4B', avatarId: 'avatar-4' },
+    { name: 'Vikram Singh', location: 'Mahanadi Delta', avatarId: 'avatar-5' },
+    { name: 'Priya Patel', location: 'Pichavaram Forest', avatarId: 'avatar-6' },
+    { name: 'Ravi Kumar', location: 'Godavari Estuary', avatarId: 'avatar-8' },
+    { name: 'Sunita Devi', location: 'Sunderbans Sector 5A', avatarId: 'avatar-9' },
+    { name: 'Deepak Ghosh', location: 'Mahanadi Delta', avatarId: 'avatar-10' },
+    { name: 'Meena Iyer', location: 'Pichavaram Forest', avatarId: 'avatar-11' },
 ];
 
 const projects = [
-    { name: "Sunderbans Restoration", tCO2e: "5,000", healthScore: 92, slug: 'sunderbans-restoration' },
-    { name: "Pichavaram Initiative", tCO2e: "2,500", healthScore: 95, slug: 'pichavaram-initiative' },
-    { name: "Mahanadi Delta Project", tCO2e: "12,000", healthScore: 85, slug: 'mahanadi-delta-project' },
-    { name: "Godavari Estuary Greens", tCO2e: "8,000", healthScore: 78, slug: 'godavari-estuary-greens' },
+    { name: "Sunderbans Restoration", carbonCredits: "5,000", healthScore: 92, slug: 'sunderbans-restoration' },
+    { name: "Pichavaram Initiative", carbonCredits: "2,500", healthScore: 95, slug: 'pichavaram-initiative' },
+    { name: "Mahanadi Delta Project", carbonCredits: "12,000", healthScore: 85, slug: 'mahanadi-delta-project' },
+    { name: "Godavari Estuary Greens", carbonCredits: "8,000", healthScore: 78, slug: 'godavari-estuary-greens' },
 ]
 
 const HealthBadge = ({ score }: { score: number }) => {
@@ -96,7 +99,7 @@ export default function NgoManagerDashboard() {
                         <div key={project.name} className="p-4 border rounded-lg flex flex-col justify-between">
                             <div>
                                 <h3 className="font-semibold">{project.name}</h3>
-                                <p className="text-sm text-muted-foreground">Generated {project.tCO2e} tCO₂e</p>
+                                <p className="text-sm text-muted-foreground">Generated {project.carbonCredits} Carbon Credits (tCO₂e)</p>
                                 <div className="flex items-center gap-2 mt-2">
                                     <p className="text-sm font-medium">Health:</p>
                                     <HealthBadge score={project.healthScore} />
@@ -118,7 +121,6 @@ export default function NgoManagerDashboard() {
                     </Button>
                 </CardFooter>
             </Card>
-            <CarbonCreditMarket />
         </div>
         <div className="grid auto-rows-max gap-8">
             <PostCreator />

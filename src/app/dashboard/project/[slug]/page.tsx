@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/card';
 import { placeholderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
-import { notFound, useParams } from 'next/navigation';
+import { useParams, notFound } from 'next/navigation';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartContainer, ChartTooltipContent, ChartConfig, ChartLegendContent } from '@/components/ui/chart';
 
@@ -18,28 +18,32 @@ const projects = [
     name: 'Sunderbans Restoration',
     location: 'West Bengal, IN',
     description: 'A flagship project focused on reforesting the Sunderbans, the largest mangrove forest in the world. This project aims to protect the Bengal tiger habitat and create a natural barrier against storm surges.',
-    heroImageId: 'project-hero-1'
+    heroImageId: 'project-hero-1',
+    carbonCredits: '5,000'
   },
   {
     slug: 'mahanadi-delta-project',
     name: 'Mahanadi Delta Project',
     location: 'Odisha, IN',
     description: 'This initiative targets the Mahanadi delta region, which is critical for local fisheries and biodiversity. We are working with local communities to restore mangrove cover and promote sustainable aquaculture.',
-    heroImageId: 'project-hero-2'
+    heroImageId: 'project-hero-2',
+    carbonCredits: '12,000'
   },
   {
     slug: 'pichavaram-initiative',
     name: 'Pichavaram Initiative',
     location: 'Tamil Nadu, IN',
     description: 'Pichavaram is one of the largest mangrove forests in India. Our work here focuses on enhancing the natural regeneration of mangroves and using technology to monitor forest health in real-time.',
-    heroImageId: 'project-hero-3'
+    heroImageId: 'project-hero-3',
+    carbonCredits: '2,500'
   },
   {
     slug: 'godavari-estuary-greens',
     name: 'Godavari Estuary Greens',
     location: 'Andhra Pradesh, IN',
     description: "The Godavari estuary is a vital ecosystem that has faced significant degradation. This project involves large-scale planting drives and the creation of community-managed nurseries to ensure a supply of healthy saplings.",
-    heroImageId: 'project-hero-4'
+    heroImageId: 'project-hero-4',
+    carbonCredits: '8,000'
   },
 ];
 
@@ -94,8 +98,17 @@ export default function ProjectOverviewPage() {
                 <p className="text-lg text-white/90">{project.location}</p>
             </div>
         </div>
-        <CardContent className="p-6">
+        <CardContent className="p-6 grid gap-6">
             <p className="text-muted-foreground">{project.description}</p>
+             <Card>
+                <CardHeader>
+                    <CardTitle>Carbon Credit Generation</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-3xl font-bold">{project.carbonCredits} <span className="text-base font-normal text-muted-foreground">tCO₂e</span></p>
+                    <p className="text-sm text-muted-foreground">Total carbon credits generated to date.</p>
+                </CardContent>
+            </Card>
         </CardContent>
       </Card>
       <Card className="shadow-lg">

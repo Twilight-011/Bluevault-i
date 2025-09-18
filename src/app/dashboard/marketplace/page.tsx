@@ -1,9 +1,9 @@
 import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
 
-export default function CompanyDashboard() {
+export default function MarketplacePage() {
   return (
     <div className="grid gap-8">
-        {/* Company specific components can go here */}
+        <CarbonCreditMarket />
     </div>
   );
 }
