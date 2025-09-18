@@ -118,13 +118,13 @@ const initialCredits: Credit[] = [
 ];
 
 
-const TrendIcon = ({ trend, percentage }: { trend: 'up' | 'down' | 'stable', percentage: number }) => {
+const TrendIcon = ({ trend, percentage }: { trend: 'up' | 'down' | 'stable', percentage: number | null }) => {
   const color = trend === 'up' ? 'text-green-500' : trend === 'down' ? 'text-red-500' : 'text-muted-foreground';
   const icon = trend === 'up' ? <ArrowUp className="h-4 w-4" /> : trend === 'down' ? <ArrowDown className="h-4 w-4" /> : <Minus className="h-4 w-4" />;
   return (
     <div className={`flex items-center text-sm ${color}`}>
         {icon}
-        <span>{percentage.toFixed(2)}%</span>
+        {percentage !== null ? <span>{percentage.toFixed(2)}%</span> : <span>-</span>}
     </div>
   );
 };
@@ -143,7 +143,11 @@ const RatingStars = ({ rating }: { rating: number }) => {
 };
 
 function CreditCard({ credit, role }: { credit: Credit, role: string | null}) {
-    const [percentage, setPercentage] = useState( (Math.random() * 5));
+    const [percentage, setPercentage] = useState<number | null>(null);
+
+    useEffect(() => {
+        setPercentage(Math.random() * 5);
+    }, []);
 
     return (
         <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
@@ -216,6 +220,13 @@ function CreditCard({ credit, role }: { credit: Credit, role: string | null}) {
                     <Button variant="outline" disabled>
                         <ShoppingCart className="mr-2 h-4 w-4"/> Buy Credits
                     </Button>
+                )}
+                {role === 'government-admin' && (
+                  <Button variant="outline" asChild>
+                    <Link href={`/dashboard/project/${credit.slug}`}>
+                      <Info className="mr-2 h-4 w-4" /> View
+                    </Link>
+                  </Button>
                 )}
             </CardFooter>
         </Card>
