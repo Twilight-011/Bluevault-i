@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "login-hero",
+      "description": "A lush mangrove forest with intricate root systems in clear water.",
+      "imageUrl": "https://picsum.photos/seed/mangrove/1280/1920",
+      "imageHint": "mangrove forest"
+    },
+    {
+      "id": "avatar-1",
+      "description": "Avatar for a user",
+      "imageUrl": "https://picsum.photos/seed/avatar1/100/100",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar-2",
+      "description": "Avatar for another user",
+      "imageUrl": "https://picsum.photos/seed/avatar2/100/100",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "avatar-3",
+      "description": "Avatar for a third user",
+      "imageUrl": "https://picsum.photos/seed/avatar3/100/100",
+      "imageHint": "person portrait"
+    }
+  ]
 }
