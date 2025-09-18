@@ -1,6 +1,5 @@
 import { ReportGenerator } from '@/components/mrv/report-generator';
 import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
-import { PostCreator } from '@/components/field-officer/post-creator';
 import SocialFeed from '@/components/dashboard/social-feed';
 
 export default function GovernmentAdminDashboard() {
@@ -11,7 +10,6 @@ export default function GovernmentAdminDashboard() {
         <CarbonCreditMarket />
       </div>
        <div className="grid auto-rows-max gap-8">
-        <PostCreator />
         <SocialFeed />
       </div>
     </div>

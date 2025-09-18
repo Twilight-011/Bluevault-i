@@ -1,5 +1,4 @@
 import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
-import { PostCreator } from '@/components/field-officer/post-creator';
 import SocialFeed from '@/components/dashboard/social-feed';
 
 export default function CompanyDashboard() {
@@ -9,7 +8,6 @@ export default function CompanyDashboard() {
         <CarbonCreditMarket />
       </div>
       <div className="grid auto-rows-max gap-8">
-        <PostCreator />
         <SocialFeed />
       </div>
     </div>

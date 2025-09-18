@@ -43,6 +43,12 @@
       "imageHint": "woman portrait"
     },
     {
+      "id": "avatar-7",
+      "description": "Avatar for a seventh user",
+      "imageUrl": "https://picsum.photos/seed/avatar7/100/100",
+      "imageHint": "person portrait"
+    },
+    {
         "id": "project-hero-1",
         "description": "A dense mangrove forest with a narrow water channel.",
         "imageUrl": "https://picsum.photos/seed/project1/1280/400",
@@ -83,6 +89,18 @@
       "description": "A kingfisher perched on a mangrove branch.",
       "imageUrl": "https://picsum.photos/seed/post3/600/400",
       "imageHint": "kingfisher bird"
+    },
+    {
+      "id": "post-image-4",
+      "description": "A pile of mangrove saplings ready for planting.",
+      "imageUrl": "https://picsum.photos/seed/post4/600/400",
+      "imageHint": "mangrove saplings"
+    },
+     {
+      "id": "post-image-5",
+      "description": "A group of people at a community workshop near a coastline.",
+      "imageUrl": "https://picsum.photos/seed/post5/600/400",
+      "imageHint": "community workshop"
     },
     {
       "id": "post-image-upload",

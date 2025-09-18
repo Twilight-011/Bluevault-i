@@ -27,6 +27,24 @@ interface SocialFeedContextType {
 
 const initialFeedItems: FeedItem[] = [
   {
+    id: 7,
+    user: 'Vikram Singh',
+    handle: 'Field Officer',
+    avatarId: 'avatar-5',
+    timestamp: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    content: 'The new batch of Avicennia marina saplings have arrived for the Mahanadi Delta project! Excited to get these in the ground.',
+    imageId: 'post-image-4',
+  },
+  {
+    id: 6,
+    user: 'Coastal Guardians',
+    handle: 'NGO Manager',
+    avatarId: 'avatar-7',
+    timestamp: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+    content: 'Just finished a community workshop on sustainable fishing practices near the Pichavaram mangroves. The engagement was fantastic!',
+    imageId: 'post-image-5',
+  },
+  {
     id: 5,
     user: 'GreenFuture Foundation',
     handle: 'NGO Manager',

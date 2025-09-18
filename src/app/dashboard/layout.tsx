@@ -46,6 +46,7 @@ import {
 import { UserNav } from '@/components/dashboard/user-nav';
 import { usePathname } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
+import { useEffect, useState } from 'react';
 
 const allNavItems = [
    {
@@ -65,12 +66,6 @@ const allNavItems = [
     href: '/dashboard/ngo-manager',
     icon: Users,
     label: 'NGO Manager',
-  },
-  {
-    role: 'stakeholder',
-    href: '/dashboard/stakeholder',
-    icon: ShieldCheck,
-    label: 'Stakeholder',
   },
   {
     role: 'company',
@@ -93,53 +88,72 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const { toast } = useToast();
-  const role = pathname.split('/')[2] || 'dashboard';
+  // Store role in state to persist it across navigation
+  const [currentRole, setCurrentRole] = useState<string | null>(null);
 
+  useEffect(() => {
+    const roleFromPath = pathname.split('/')[2];
+    if (roleFromPath && roleFromPath !== 'project' && roleFromPath !== 'mrv-report') {
+      setCurrentRole(roleFromPath);
+    }
+  }, [pathname]);
+  
   const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
     // Allow navigation to explore page
     if (targetRole === 'dashboard') return;
 
-    if (role && targetRole !== role) {
+    if (currentRole && targetRole !== currentRole) {
       e.preventDefault();
       toast({
         variant: 'destructive',
         title: 'Access Denied',
-        description: `You must have the '${targetRole.replace('-', ' ')}' role to access this section.`,
+        description: `You are logged in as a '${currentRole.replace('-', ' ')}'. You cannot access the '${targetRole.replace('-', ' ')}' dashboard.`,
       });
     }
   };
 
-  const navItems = role ? allNavItems.filter(item => item.role === role || item.role === 'dashboard') : allNavItems;
+  const navItems = currentRole ? allNavItems.filter(item => item.role === currentRole || item.role === 'dashboard') : allNavItems;
 
 
   const getBreadcrumb = () => {
     const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 1 && parts[0] === 'dashboard') {
+    const isExplorePage = parts.length === 1 && parts[0] === 'dashboard';
+
+    if (isExplorePage) {
        return (
         <BreadcrumbItem>
             <BreadcrumbPage>Explore</BreadcrumbPage>
         </BreadcrumbItem>
        )
     }
-    if (parts.length > 1) {
-      const currentItem = allNavItems.find(item => item.href === `/${parts.join('/')}`);
-      return (
-        <>
-          <BreadcrumbItem>
-             <BreadcrumbLink asChild>
-                <Link href={`/dashboard`}>Explore</Link>
-             </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
+
+    const currentPage = allNavItems.find(item => item.href === pathname);
+
+    return (
+      <>
+        <BreadcrumbItem>
+           <BreadcrumbLink asChild>
+              <Link href={`/dashboard`}>Explore</Link>
+           </BreadcrumbLink>
+        </BreadcrumbItem>
+        {currentPage && <BreadcrumbSeparator />}
+        {currentPage && (
           <BreadcrumbItem>
             <BreadcrumbPage className="capitalize font-medium">
-              {currentItem?.label || parts[1].replace('-', ' ')}
+              {currentPage.label}
             </BreadcrumbPage>
           </BreadcrumbItem>
-        </>
-      );
-    }
-    return null;
+        )}
+         {(!currentPage && parts.length > 2) && <BreadcrumbSeparator />}
+         {(!currentPage && parts.length > 2) && (
+            <BreadcrumbItem>
+                <BreadcrumbPage className="capitalize font-medium">
+                    {parts[parts.length-1].replace(/-/g, ' ')}
+                </BreadcrumbPage>
+            </BreadcrumbItem>
+         )}
+      </>
+    );
   };
 
   return (
