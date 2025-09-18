@@ -1,7 +1,5 @@
 
 'use client';
-import { ReportGenerator } from '@/components/mrv/report-generator';
-import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
 import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Building, Users, HardHat, Leaf } from 'lucide-react';
@@ -44,8 +42,6 @@ export default function GovernmentAdminDashboard() {
                 <StatCard icon={Building} label="Partner Companies" value="12" unit="Investors" />
             </CardContent>
         </Card>
-        <ReportGenerator />
-        <CarbonCreditMarket role={role} />
     </div>
   );
 }

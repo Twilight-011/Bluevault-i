@@ -1,3 +1,4 @@
+
 'use client';
 import Link from 'next/link';
 import {
@@ -114,7 +115,7 @@ export default function DashboardLayout({
             );
         case 'government-admin':
             return allNavItems.filter(item => 
-                ['dashboard', 'government-admin', 'marketplace'].includes(item.role)
+                ['dashboard', 'government-admin'].includes(item.role)
             );
         default:
             return allNavItems.filter(item => item.role === 'dashboard');
