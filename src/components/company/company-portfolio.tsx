@@ -85,7 +85,7 @@ export function CompanyPortfolio() {
                         <TableRow key={investment.project}>
                             <TableCell className="font-medium">{investment.project}</TableCell>
                             <TableCell className="text-right">{investment.credits.toLocaleString()}</TableCell>
-                            <TableCell className="text-right">₹{investment.avgPrice.toFixed(2)}</TableCell>
+                            <TableCell className="text-right">{investment.avgPrice.toFixed(2)}</TableCell>
                             <TableCell className="text-center"><StatusBadge status={investment.status} /></TableCell>
                             <TableCell className="text-right">
                                 <Button variant="ghost" size="icon" asChild>
@@ -111,4 +111,3 @@ export function CompanyPortfolio() {
     </Card>
   );
 }
-

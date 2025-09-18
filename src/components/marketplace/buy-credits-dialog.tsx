@@ -66,7 +66,7 @@ export function BuyCreditsDialog({ credit }: BuyCreditsDialogProps) {
     }
 
     // Simulate purchase
-    console.log(`Purchasing ${amount} credits from ${credit.project} for a total of ₹${totalCost.toFixed(2)}.`);
+    console.log(`Purchasing ${amount} credits from ${credit.project} for a total of ${totalCost.toFixed(2)}.`);
     toast({
       title: 'Purchase Successful',
       description: `You have purchased ${numericAmount.toLocaleString()} carbon credits from ${credit.project}.`,
@@ -94,7 +94,7 @@ export function BuyCreditsDialog({ credit }: BuyCreditsDialogProps) {
             <div className='space-y-2'>
                 <div className='flex justify-between items-center'>
                      <Label>Price per credit (tCO₂e)</Label>
-                     <Badge variant="outline">₹{credit.price.toFixed(2)}</Badge>
+                     <Badge variant="outline">{credit.price.toFixed(2)}</Badge>
                 </div>
                  <div className='flex justify-between items-center'>
                      <Label>Credits Available</Label>
@@ -118,10 +118,10 @@ export function BuyCreditsDialog({ credit }: BuyCreditsDialogProps) {
              <div className="mt-4 pt-4 border-t">
                 <div className="flex justify-between items-center font-semibold">
                     <span>Total Cost</span>
-                    <span>₹{totalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    <span>{totalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
                 <p className="text-xs text-muted-foreground text-right mt-1">
-                    ( {amount} credits &times; ₹{credit.price.toFixed(2)} )
+                    ( {amount} credits &times; {credit.price.toFixed(2)} )
                 </p>
              </div>
           )}

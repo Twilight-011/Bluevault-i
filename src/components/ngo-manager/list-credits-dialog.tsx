@@ -61,10 +61,10 @@ export function ListCreditsDialog({ project }: ListCreditsDialogProps) {
     }
 
     // Simulate listing credits
-    console.log(`Listing ${amount} credits for ${project.name} at ₹${price} each.`);
+    console.log(`Listing ${amount} credits for ${project.name} at ${price} each.`);
     toast({
       title: 'Credits Listed Successfully',
-      description: `You have listed ${numericAmount.toLocaleString()} credits for ${project.name} on the marketplace at ₹${numericPrice.toFixed(2)} each.`,
+      description: `You have listed ${numericAmount.toLocaleString()} credits for ${project.name} on the marketplace at ${numericPrice.toFixed(2)} each.`,
     });
     setOpen(false);
     setAmount('');
@@ -106,16 +106,13 @@ export function ListCreditsDialog({ project }: ListCreditsDialogProps) {
               Price (INR)
             </Label>
              <div className="relative col-span-3">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
-                  ₹
-                </span>
                 <Input
                   id="price"
                   type="number"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="e.g., 2150.00"
-                  className="pl-7"
+                  className="pl-2"
                 />
             </div>
           </div>
