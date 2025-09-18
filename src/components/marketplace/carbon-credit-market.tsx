@@ -1,3 +1,4 @@
+
 'use client';
 import { useEffect, useState } from 'react';
 import {
@@ -164,7 +165,7 @@ export function CarbonCreditMarket({ role }: { role: string | null }) {
                 <TableCell className="text-right">
                   <div className="flex items-center justify-end gap-2">
                     <TrendIcon trend={credit.trend} />
-                    <span>₹{credit.price.toFixed(2)}</span>
+                    <span>{credit.price.toFixed(2)}</span>
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
