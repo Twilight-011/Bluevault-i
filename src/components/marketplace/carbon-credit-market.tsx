@@ -35,7 +35,7 @@ const initialCredits: Credit[] = [
     project: 'Sunderbans Restoration',
     slug: 'sunderbans-restoration',
     location: 'West Bengal, IN',
-    price: 25.5,
+    price: 2116.5,
     healthScore: 92,
     available: 5000,
     trend: 'up',
@@ -44,7 +44,7 @@ const initialCredits: Credit[] = [
     project: 'Mahanadi Delta Project',
     slug: 'mahanadi-delta-project',
     location: 'Odisha, IN',
-    price: 18.75,
+    price: 1556.25,
     healthScore: 85,
     available: 12000,
     trend: 'stable',
@@ -53,7 +53,7 @@ const initialCredits: Credit[] = [
     project: 'Pichavaram Initiative',
     slug: 'pichavaram-initiative',
     location: 'Tamil Nadu, IN',
-    price: 32.1,
+    price: 2664.3,
     healthScore: 95,
     available: 2500,
     trend: 'up',
@@ -62,7 +62,7 @@ const initialCredits: Credit[] = [
     project: 'Godavari Estuary Greens',
     slug: 'godavari-estuary-greens',
     location: 'Andhra Pradesh, IN',
-    price: 21.0,
+    price: 1743.0,
     healthScore: 78,
     available: 8000,
     trend: 'down',
@@ -71,7 +71,7 @@ const initialCredits: Credit[] = [
     project: 'Krishna Mangrove Regeneration',
     slug: 'krishna-mangrove-regeneration',
     location: 'Andhra Pradesh, IN',
-    price: 23.50,
+    price: 1950.50,
     healthScore: 90,
     available: 6500,
     trend: 'up',
@@ -80,7 +80,7 @@ const initialCredits: Credit[] = [
     project: 'Mumbai Coastal Protection',
     slug: 'mumbai-coastal-protection',
     location: 'Maharashtra, IN',
-    price: 28.00,
+    price: 2324.00,
     healthScore: 88,
     available: 3000,
     trend: 'stable',
@@ -109,8 +109,8 @@ export function CarbonCreditMarket() {
     const interval = setInterval(() => {
       setCredits((prevCredits) =>
         prevCredits.map((credit) => {
-          const change = (Math.random() - 0.5) * 0.5;
-          const newPrice = Math.max(10, credit.price + change);
+          const change = (Math.random() - 0.5) * 20; // Adjusted for INR
+          const newPrice = Math.max(1000, credit.price + change);
           let newTrend: 'up' | 'down' | 'stable' = 'stable';
           if (newPrice > credit.price) newTrend = 'up';
           if (newPrice < credit.price) newTrend = 'down';
@@ -130,7 +130,7 @@ export function CarbonCreditMarket() {
           <Store className="h-6 w-6" /> Carbon Credit Marketplace
         </CardTitle>
         <CardDescription>
-          Invest in verified carbon credits from mangrove restoration projects.
+          Invest in verified carbon credits from mangrove restoration projects. Prices in INR.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -139,7 +139,7 @@ export function CarbonCreditMarket() {
             <TableRow>
               <TableHead>Project</TableHead>
               <TableHead className="text-center">Health</TableHead>
-              <TableHead className="text-right">Price (USD)</TableHead>
+              <TableHead className="text-right">Price (INR)</TableHead>
               <TableHead className="text-right">Available (tCO2e)</TableHead>
               <TableHead className="text-right">Action</TableHead>
             </TableRow>
@@ -163,7 +163,7 @@ export function CarbonCreditMarket() {
                 <TableCell className="text-right">
                   <div className="flex items-center justify-end gap-2">
                     <TrendIcon trend={credit.trend} />
-                    <span>${credit.price.toFixed(2)}</span>
+                    <span>₹{credit.price.toFixed(2)}</span>
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
