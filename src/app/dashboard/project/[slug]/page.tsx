@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/card';
 import { placeholderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 import { ChartContainer, ChartTooltipContent, ChartConfig, ChartLegendContent } from '@/components/ui/chart';
 
@@ -64,8 +64,10 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 
-export default function ProjectOverviewPage({ params }: { params: { slug: string } }) {
-    const project = projects.find(p => p.slug === params.slug);
+export default function ProjectOverviewPage() {
+    const params = useParams();
+    const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+    const project = projects.find(p => p.slug === slug);
 
     if (!project) {
         notFound();
