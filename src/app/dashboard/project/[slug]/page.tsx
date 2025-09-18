@@ -45,6 +45,22 @@ const projects = [
     heroImageId: 'project-hero-4',
     carbonCredits: '8,000'
   },
+   {
+    slug: 'krishna-mangrove-regeneration',
+    name: 'Krishna Mangrove Regeneration',
+    location: 'Andhra Pradesh, IN',
+    description: "Revitalizing the Krishna river delta's mangrove ecosystem to support local livelihoods and enhance coastal resilience.",
+    heroImageId: 'project-hero-1',
+    carbonCredits: '6,500'
+  },
+   {
+    slug: 'mumbai-coastal-protection',
+    name: 'Mumbai Coastal Protection',
+    location: 'Maharashtra, IN',
+    description: "A crucial urban mangrove project aimed at protecting Mumbai's coastline from erosion and sea-level rise, creating a green lung for the city.",
+    heroImageId: 'project-hero-2',
+    carbonCredits: '3,000'
+  },
 ];
 
 const chartData = [
@@ -105,7 +121,7 @@ export default function ProjectOverviewPage() {
                     <CardTitle>Carbon Credit Generation</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-3xl font-bold">{project.carbonCredits} <span className="text-base font-normal text-muted-foreground">tCO₂e</span></p>
+                    <p className="text-3xl font-bold">{parseInt(project.carbonCredits).toLocaleString()} <span className="text-base font-normal text-muted-foreground">tCO₂e</span></p>
                     <p className="text-sm text-muted-foreground">Total carbon credits generated to date.</p>
                 </CardContent>
             </Card>

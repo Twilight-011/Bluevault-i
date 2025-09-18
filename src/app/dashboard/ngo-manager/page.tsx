@@ -18,6 +18,7 @@ import { PostCreator } from '@/components/field-officer/post-creator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
 import { Badge } from '@/components/ui/badge';
+import { ListCreditsDialog } from '@/components/ngo-manager/list-credits-dialog';
 
 const farmers = [
     { name: 'Anjali Sharma', location: 'Sunderbans Sector 4B', avatarId: 'avatar-4' },
@@ -27,13 +28,18 @@ const farmers = [
     { name: 'Sunita Devi', location: 'Sunderbans Sector 5A', avatarId: 'avatar-9' },
     { name: 'Deepak Ghosh', location: 'Mahanadi Delta', avatarId: 'avatar-10' },
     { name: 'Meena Iyer', location: 'Pichavaram Forest', avatarId: 'avatar-11' },
+    { name: 'Karthik Reddy', location: 'Godavari Estuary', avatarId: 'avatar-2' },
+    { name: 'Fatima Sheikh', location: 'Sunderbans Sector 6C', avatarId: 'avatar-3' },
+    { name: 'Gopal Verma', location: 'Mahanadi Delta', avatarId: 'avatar-7' }
 ];
 
 const projects = [
-    { name: "Sunderbans Restoration", carbonCredits: "5,000", healthScore: 92, slug: 'sunderbans-restoration' },
-    { name: "Pichavaram Initiative", carbonCredits: "2,500", healthScore: 95, slug: 'pichavaram-initiative' },
-    { name: "Mahanadi Delta Project", carbonCredits: "12,000", healthScore: 85, slug: 'mahanadi-delta-project' },
-    { name: "Godavari Estuary Greens", carbonCredits: "8,000", healthScore: 78, slug: 'godavari-estuary-greens' },
+    { name: "Sunderbans Restoration", carbonCredits: 5000, healthScore: 92, slug: 'sunderbans-restoration' },
+    { name: "Pichavaram Initiative", carbonCredits: 2500, healthScore: 95, slug: 'pichavaram-initiative' },
+    { name: "Mahanadi Delta Project", carbonCredits: 12000, healthScore: 85, slug: 'mahanadi-delta-project' },
+    { name: "Godavari Estuary Greens", carbonCredits: 8000, healthScore: 78, slug: 'godavari-estuary-greens' },
+    { name: "Krishna Mangrove Regeneration", carbonCredits: 6500, healthScore: 90, slug: 'krishna-mangrove-regeneration' },
+    { name: "Mumbai Coastal Protection", carbonCredits: 3000, healthScore: 88, slug: 'mumbai-coastal-protection' }
 ]
 
 const HealthBadge = ({ score }: { score: number }) => {
@@ -97,19 +103,22 @@ export default function NgoManagerDashboard() {
                 <CardContent className="grid gap-4 md:grid-cols-2">
                     {projects.map(project => (
                         <div key={project.name} className="p-4 border rounded-lg flex flex-col justify-between">
-                            <div>
+                           <div>
                                 <h3 className="font-semibold">{project.name}</h3>
-                                <p className="text-sm text-muted-foreground">Generated {project.carbonCredits} Carbon Credits (tCO₂e)</p>
+                                <p className="text-sm text-muted-foreground">Generated {project.carbonCredits.toLocaleString()} tCO₂e</p>
                                 <div className="flex items-center gap-2 mt-2">
                                     <p className="text-sm font-medium">Health:</p>
                                     <HealthBadge score={project.healthScore} />
                                 </div>
                             </div>
-                             <Button variant="link" size="sm" className="px-0 self-start mt-2" asChild>
-                                <Link href={`/dashboard/project/${project.slug}`}>
-                                    View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-                                </Link>
-                            </Button>
+                            <div className="flex items-center justify-between mt-4">
+                                <Button variant="link" size="sm" className="px-0 self-start" asChild>
+                                    <Link href={`/dashboard/project/${project.slug}`}>
+                                        View Project <ArrowUpRight className="ml-1 h-4 w-4" />
+                                    </Link>
+                                </Button>
+                                <ListCreditsDialog project={project} />
+                            </div>
                         </div>
                     ))}
                 </CardContent>
@@ -130,7 +139,7 @@ export default function NgoManagerDashboard() {
                     <CardDescription>Field officers and local partners.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <ScrollArea className="h-64">
+                    <ScrollArea className="h-96">
                         <div className="space-y-4">
                             {farmers.map(farmer => {
                                 const avatar = placeholderImages.find(p => p.id === farmer.avatarId);

@@ -67,6 +67,24 @@ const initialCredits: Credit[] = [
     available: 8000,
     trend: 'down',
   },
+    {
+    project: 'Krishna Mangrove Regeneration',
+    slug: 'krishna-mangrove-regeneration',
+    location: 'Andhra Pradesh, IN',
+    price: 23.50,
+    healthScore: 90,
+    available: 6500,
+    trend: 'up',
+  },
+    {
+    project: 'Mumbai Coastal Protection',
+    slug: 'mumbai-coastal-protection',
+    location: 'Maharashtra, IN',
+    price: 28.00,
+    healthScore: 88,
+    available: 3000,
+    trend: 'stable',
+  },
 ];
 
 const HealthBadge = ({ score }: { score: number }) => {
