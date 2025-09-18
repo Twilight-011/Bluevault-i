@@ -15,7 +15,7 @@ import {
 import { placeholderImages } from '@/lib/placeholder-images';
 import { useSocialFeed } from '@/context/social-feed-context';
 import { formatDistanceToNow } from 'date-fns';
-import { Heart, MessageCircle, Send, Image as ImageIcon } from 'lucide-react';
+import { Heart, MessageCircle, Send } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -116,10 +116,15 @@ export default function SocialFeed() {
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-sm">{item.content}</p>
-              {item.imageId ? (
-                <div className="flex aspect-video w-full flex-col items-center justify-center rounded-lg border bg-muted">
-                    <ImageIcon className="h-10 w-10 text-muted-foreground" />
-                    <p className="mt-2 text-sm text-muted-foreground">Image Coming Soon</p>
+              {postImage ? (
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                  <Image
+                    src={postImage.imageUrl}
+                    alt={postImage.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={postImage.imageHint}
+                  />
                 </div>
               ) : null}
             </CardContent>
