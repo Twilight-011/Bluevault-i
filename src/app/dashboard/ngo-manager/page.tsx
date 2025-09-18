@@ -17,6 +17,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { PostCreator } from '@/components/field-officer/post-creator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
+import SocialFeed from '@/components/dashboard/social-feed';
 
 const farmers = [
   { name: 'Anjali Sharma', location: 'Sunderbans Sector 4B', avatarId: 'avatar-4' },
@@ -101,9 +102,6 @@ export default function NgoManagerDashboard() {
                     </Button>
                 </CardFooter>
             </Card>
-        </div>
-        <div className="grid auto-rows-max gap-8">
-            <PostCreator />
             <Card className="shadow-lg">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2"><Users /> Affiliated Farmers</CardTitle>
@@ -131,6 +129,10 @@ export default function NgoManagerDashboard() {
                     </ScrollArea>
                 </CardContent>
             </Card>
+        </div>
+        <div className="grid auto-rows-max gap-8">
+            <PostCreator />
+            <SocialFeed />
         </div>
     </div>
   );

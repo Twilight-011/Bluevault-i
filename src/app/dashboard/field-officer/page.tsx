@@ -2,9 +2,10 @@
 import { DataInputForm } from '@/components/field-officer/data-input-form';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Siren, Wind, Droplets, Leaf } from 'lucide-react';
+import { Siren, Wind, Droplets, Leaf, BarChart2 } from 'lucide-react';
 import { useAlerts } from '@/context/alert-context';
 import { PostCreator } from '@/components/field-officer/post-creator';
+import SocialFeed from '@/components/dashboard/social-feed';
 
 function StatCard({ icon: Icon, label, value, unit }: {icon: React.ElementType, label: string, value: string, unit: string}) {
     return (
@@ -34,10 +35,11 @@ export default function FieldOfficerDashboard() {
   return (
     <div className="grid gap-8 lg:grid-cols-3">
       <div className="lg:col-span-2 grid auto-rows-max gap-8">
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <StatCard icon={Leaf} label="Total Trees Planted" value="15,230" unit="in Sunderbans Sector 4B" />
-            <StatCard icon={Droplets} label="Avg. Soil Moisture" value="62%" unit="+2% from last week" />
-            <StatCard icon={Wind} label="Avg. Carbon Sequestration" value="1.2" unit="tCO2e per hectare" />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <StatCard icon={Leaf} label="Trees Planted" value="15,230" unit="Total" />
+            <StatCard icon={Droplets} label="Avg. O₂ Release" value="39,598" unit="kg/day" />
+            <StatCard icon={Wind} label="CO₂ Sequestered" value="1.2" unit="tCO₂e" />
+            <StatCard icon={BarChart2} label="Health Score" value="92" unit="Avg. Score" />
         </div>
         <DataInputForm />
          <Card className="shadow-lg">
@@ -60,6 +62,7 @@ export default function FieldOfficerDashboard() {
       </div>
       <div className="grid auto-rows-max gap-8">
         <PostCreator />
+        <SocialFeed />
       </div>
     </div>
   );

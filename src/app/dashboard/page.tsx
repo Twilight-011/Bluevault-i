@@ -14,8 +14,11 @@ export default function Dashboard() {
             <p className="text-muted-foreground">Select a dashboard from the navigation to manage your role-specific tasks, or check out the latest project updates from the community in the social feed.</p>
            </CardContent>
         </Card>
+        <div className="lg:hidden">
+          <SocialFeed />
+        </div>
       </div>
-      <div className="grid auto-rows-max gap-8">
+      <div className="hidden lg:grid auto-rows-max gap-8">
         <SocialFeed />
       </div>
     </div>

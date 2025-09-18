@@ -1,9 +1,17 @@
 import { CarbonCreditMarket } from '@/components/marketplace/carbon-credit-market';
+import { PostCreator } from '@/components/field-officer/post-creator';
+import SocialFeed from '@/components/dashboard/social-feed';
 
 export default function CompanyDashboard() {
   return (
-    <div className="grid gap-8 auto-rows-max">
-      <CarbonCreditMarket />
+    <div className="grid gap-8 lg:grid-cols-3">
+      <div className="lg:col-span-2 grid auto-rows-max gap-8">
+        <CarbonCreditMarket />
+      </div>
+      <div className="grid auto-rows-max gap-8">
+        <PostCreator />
+        <SocialFeed />
+      </div>
     </div>
   );
 }
