@@ -25,6 +25,24 @@
       "imageHint": "person portrait"
     },
     {
+      "id": "avatar-4",
+      "description": "Avatar for a fourth user",
+      "imageUrl": "https://picsum.photos/seed/avatar4/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "avatar-5",
+      "description": "Avatar for a fifth user",
+      "imageUrl": "https://picsum.photos/seed/avatar5/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "avatar-6",
+      "description": "Avatar for a sixth user",
+      "imageUrl": "https://picsum.photos/seed/avatar6/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
         "id": "project-hero-1",
         "description": "A dense mangrove forest with a narrow water channel.",
         "imageUrl": "https://picsum.photos/seed/project1/1280/400",

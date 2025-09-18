@@ -56,7 +56,7 @@ export function LoginForm() {
     setTimeout(() => {
       toast({
         title: 'Login Successful',
-        description: `Redirecting to ${values.role} dashboard...`,
+        description: `Redirecting to ${values.role.replace('-', ' ')} dashboard...`,
       });
       router.push(`/dashboard/${values.role}`);
       setIsLoading(false);

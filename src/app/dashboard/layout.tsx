@@ -15,6 +15,7 @@ import {
   Users,
   Building,
   UserCog,
+  Landmark,
 } from 'lucide-react';
 
 import {
@@ -43,6 +44,40 @@ import {
 } from '@/components/ui/tooltip';
 import { UserNav } from '@/components/dashboard/user-nav';
 import { usePathname } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+
+const allNavItems = [
+  {
+    role: 'field-officer',
+    href: '/dashboard/field-officer',
+    icon: HardHat,
+    label: 'Field Officer',
+  },
+  {
+    role: 'ngo-manager',
+    href: '/dashboard/ngo-manager',
+    icon: Users,
+    label: 'NGO Manager',
+  },
+  {
+    role: 'stakeholder',
+    href: '/dashboard/stakeholder',
+    icon: ShieldCheck,
+    label: 'Stakeholder',
+  },
+  {
+    role: 'company',
+    href: '/dashboard/company',
+    icon: Building,
+    label: 'Company',
+  },
+  {
+    role: 'government-admin',
+    href: '/dashboard/government-admin',
+    icon: Landmark,
+    label: 'Government/Admin',
+  },
+];
 
 export default function DashboardLayout({
   children,
@@ -50,74 +85,51 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const role = pathname.split('/')[2] || 'dashboard';
+  const { toast } = useToast();
+  const role = pathname.split('/')[2];
 
-  const navItems = [
-    {
-      href: '/dashboard/field-officer',
-      icon: HardHat,
-      label: 'Field Officer',
-    },
-    {
-      href: '/dashboard/ngo-manager',
-      icon: Users,
-      label: 'NGO Manager',
-    },
-    {
-      href: '/dashboard/stakeholder',
-      icon: ShieldCheck,
-      label: 'Stakeholder',
-    },
-    {
-      href: '/dashboard/company',
-      icon: Building,
-      label: 'Company',
-    },
-    {
-      href: '/dashboard/government-admin',
-      icon: UserCog,
-      label: 'Government/Admin',
-    },
-    {
-      href: '/dashboard/mrv-report',
-      icon: FileText,
-      label: 'MRV Reports',
-    },
-  ];
+  const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
+    if (role && targetRole !== role) {
+      e.preventDefault();
+      toast({
+        variant: 'destructive',
+        title: 'Access Denied',
+        description: `You must have the '${targetRole.replace('-', ' ')}' role to access this section.`,
+      });
+    }
+  };
+
+  const navItems = role ? allNavItems.filter(item => item.role === role) : allNavItems;
+
 
   const getBreadcrumb = () => {
     const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 2) {
-      return (
-        <BreadcrumbPage className="capitalize font-medium">
-          {parts[1].replace('-', ' ')}
-        </BreadcrumbPage>
-      );
+    if (parts.length === 1 && parts[0] === 'dashboard') {
+       return (
+        <BreadcrumbItem>
+            <BreadcrumbPage>Home</BreadcrumbPage>
+        </BreadcrumbItem>
+       )
     }
-    if (parts.length > 2) {
+    if (parts.length > 1) {
+      const currentItem = allNavItems.find(item => item.href === `/${parts[0]}/${parts[1]}`);
       return (
         <>
           <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href={`/${parts[0]}/${parts[1]}`}>
-                {parts[1].replace('-', ' ')}
-              </Link>
-            </BreadcrumbLink>
+             <BreadcrumbLink asChild>
+                <Link href={`/dashboard`}>Dashboard</Link>
+             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage className="capitalize font-medium">
-              {decodeURIComponent(parts[2].replace('-', ' '))}
+              {currentItem?.label || parts[1].replace('-', ' ')}
             </BreadcrumbPage>
           </BreadcrumbItem>
         </>
       );
     }
-    return (
-      <BreadcrumbItem>
-        <BreadcrumbPage>Dashboard</BreadcrumbPage>
-      </BreadcrumbItem>
-    );
+    return null;
   };
 
   return (
@@ -132,11 +144,12 @@ export default function DashboardLayout({
               <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
               <span className="sr-only">BlueVault</span>
             </Link>
-            {navItems.map((item) => (
+            {allNavItems.map((item) => (
               <Tooltip key={item.label}>
                 <TooltipTrigger asChild>
                   <Link
                     href={item.href}
+                    onClick={(e) => handleNavClick(e, item.role)}
                     className={`flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8 ${
                       pathname.startsWith(item.href)
                         ? 'bg-accent text-accent-foreground'
@@ -170,10 +183,17 @@ export default function DashboardLayout({
                     <Leaf className="h-5 w-5 transition-all group-hover:scale-110" />
                     <span className="sr-only">BlueVault</span>
                   </Link>
-                  {navItems.map((item) => (
+                  {allNavItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
+                      onClick={(e) => {
+                        handleNavClick(e, item.role);
+                        const trigger = document.querySelector('[data-radix-collection-item] > button');
+                        if (trigger instanceof HTMLElement) {
+                            trigger.click();
+                        }
+                      }}
                       className={`flex items-center gap-4 px-2.5 ${
                         pathname.startsWith(item.href)
                           ? 'text-foreground'
@@ -189,12 +209,6 @@ export default function DashboardLayout({
             </Sheet>
             <Breadcrumb className="hidden md:flex">
               <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink asChild>
-                    <Link href="/dashboard">Dashboard</Link>
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
                 {getBreadcrumb()}
               </BreadcrumbList>
             </Breadcrumb>

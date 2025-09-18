@@ -1,9 +1,16 @@
 'use client';
-import { HealthOverview } from '@/components/project-health/health-overview';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { placeholderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import { ChartContainer, ChartTooltipContent, ChartConfig, ChartLegendContent } from '@/components/ui/chart';
 
 const projects = [
   {
@@ -35,6 +42,26 @@ const projects = [
     heroImageId: 'project-hero-4'
   },
 ];
+
+const chartData = [
+  { month: 'January', treesPlanted: 1860, survivalRate: 80 },
+  { month: 'February', treesPlanted: 3050, survivalRate: 82 },
+  { month: 'March', treesPlanted: 2370, survivalRate: 85 },
+  { month: 'April', treesPlanted: 1730, survivalRate: 88 },
+  { month: 'May', treesPlanted: 2090, survivalRate: 91 },
+  { month: 'June', treesPlanted: 2540, survivalRate: 93 },
+];
+
+const chartConfig = {
+  treesPlanted: {
+    label: 'Trees Planted',
+    color: 'hsl(var(--primary))',
+  },
+  survivalRate: {
+    label: 'Survival Rate (%)',
+    color: 'hsl(var(--accent))',
+  },
+} satisfies ChartConfig;
 
 
 export default function ProjectOverviewPage({ params }: { params: { slug: string } }) {
@@ -69,7 +96,31 @@ export default function ProjectOverviewPage({ params }: { params: { slug: string
             <p className="text-muted-foreground">{project.description}</p>
         </CardContent>
       </Card>
-      <HealthOverview />
+      <Card className="shadow-lg">
+      <CardHeader>
+        <CardTitle className="font-headline">Project Health Overview</CardTitle>
+        <CardDescription>Monthly Planting and Survival Rates</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+          <BarChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <YAxis yAxisId="left" orientation="left" stroke="hsl(var(--primary))" />
+            <YAxis yAxisId="right" orientation="right" domain={[60, 100]} stroke="hsl(var(--accent))" />
+            <Tooltip content={<ChartTooltipContent />} />
+            <Legend content={<ChartLegendContent />} />
+            <Bar yAxisId="left" dataKey="treesPlanted" fill="var(--color-treesPlanted)" radius={4} />
+            <Bar yAxisId="right" dataKey="survivalRate" fill="var(--color-survivalRate)" radius={4} />
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
     </div>
   );
 }
