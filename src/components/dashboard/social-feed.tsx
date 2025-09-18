@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Card,
@@ -15,18 +16,23 @@ import { formatDistanceToNow } from 'date-fns';
 import { Button } from '../ui/button';
 import { Heart, MessageCircle, Send } from 'lucide-react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function SocialFeed() {
   const { feedItems } = useSocialFeed();
+  const pathname = usePathname();
+  const isExplorePage = pathname === '/dashboard';
 
   return (
     <div className="space-y-8">
-        <Card>
+      {isExplorePage && (
+         <Card>
             <CardHeader>
                 <CardTitle className="font-headline">Explore</CardTitle>
                 <CardDescription>A live feed of updates from all stakeholders.</CardDescription>
             </CardHeader>
         </Card>
+      )}
       {feedItems.map((item) => {
         const avatar = placeholderImages.find(
           (img) => img.id === item.avatarId
