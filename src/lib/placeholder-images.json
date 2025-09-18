@@ -8,69 +8,69 @@
     },
     {
       "id": "avatar-1",
-      "description": "Avatar for a user",
-      "imageUrl": "https://picsum.photos/seed/person-in-nature/100/100",
-      "imageHint": "person nature"
+      "description": "A close-up of a mangrove leaf.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-leaf/100/100",
+      "imageHint": "mangrove leaf"
     },
     {
       "id": "avatar-2",
-      "description": "Avatar for another user",
-      "imageUrl": "https://picsum.photos/seed/conservationist-portrait/100/100",
-      "imageHint": "conservationist portrait"
+      "description": "Sunlight filtering through the mangrove canopy onto the water.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-water/100/100",
+      "imageHint": "mangrove water"
     },
     {
       "id": "avatar-3",
-      "description": "Avatar for a third user",
-      "imageUrl": "https://picsum.photos/seed/corporate-headshot/100/100",
-      "imageHint": "corporate headshot"
+      "description": "A solitary mangrove tree in calm water.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-tree/100/100",
+      "imageHint": "mangrove tree"
     },
     {
       "id": "avatar-4",
-      "description": "Avatar for a fourth user",
-      "imageUrl": "https://picsum.photos/seed/ecologist-woman/100/100",
-      "imageHint": "ecologist woman"
+      "description": "The intricate root system of a mangrove.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-root-system/100/100",
+      "imageHint": "mangrove roots"
     },
     {
       "id": "avatar-5",
-      "description": "Avatar for a fifth user",
-      "imageUrl": "https://picsum.photos/seed/field-researcher/100/100",
-      "imageHint": "field researcher"
+      "description": "A dense grove of young mangrove trees.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-grove/100/100",
+      "imageHint": "mangrove grove"
     },
     {
       "id": "avatar-6",
-      "description": "Avatar for a sixth user",
-      "imageUrl": "https://picsum.photos/seed/biologist-portrait/100/100",
-      "imageHint": "biologist portrait"
+      "description": "A view from within a mangrove forest looking out.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-forest-view/100/100",
+      "imageHint": "mangrove forest"
     },
     {
       "id": "avatar-7",
-      "description": "Avatar for a seventh user",
-      "imageUrl": "https://picsum.photos/seed/ngo-worker/100/100",
-      "imageHint": "ngo worker"
+      "description": "A mangrove sapling sprouting from the mud.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-sprout/100/100",
+      "imageHint": "mangrove sprout"
     },
      {
       "id": "avatar-8",
-      "description": "Avatar for an eighth user",
-      "imageUrl": "https://picsum.photos/seed/park-ranger/100/100",
-      "imageHint": "park ranger"
+      "description": "The edge of a mangrove coastline.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-coast/100/100",
+      "imageHint": "mangrove coast"
     },
     {
       "id": "avatar-9",
-      "description": "Avatar for a ninth user",
-      "imageUrl": "https://picsum.photos/seed/sustainability-manager/100/100",
-      "imageHint": "sustainability manager"
+      "description": "The textured bark of a mangrove tree.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-bark/100/100",
+      "imageHint": "mangrove bark"
     },
     {
       "id": "avatar-10",
-      "description": "Avatar for a tenth user",
-      "imageUrl": "https://picsum.photos/seed/marine-biologist/100/100",
-      "imageHint": "marine biologist"
+      "description": "An aerial view of a mangrove delta.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-delta/100/100",
+      "imageHint": "mangrove delta"
     },
     {
       "id": "avatar-11",
-      "description": "Avatar for an eleventh user",
-      "imageUrl": "https://picsum.photos/seed/botanist-female/100/100",
-      "imageHint": "botanist female"
+      "description": "A mangrove flower.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-flower/100/100",
+      "imageHint": "mangrove flower"
     },
     {
         "id": "project-hero-1",
@@ -110,9 +110,9 @@
     },
     {
       "id": "post-image-3",
-      "description": "A kingfisher perched on a mangrove branch.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-bird/600/400",
-      "imageHint": "mangrove bird"
+      "description": "A small boat in a mangrove channel.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-boat/600/400",
+      "imageHint": "mangrove boat"
     },
     {
       "id": "post-image-4",
@@ -122,14 +122,14 @@
     },
      {
       "id": "post-image-5",
-      "description": "A group of people at a community workshop near a coastline.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-community/600/400",
-      "imageHint": "mangrove community"
+      "description": "People planting mangroves along a coastline.",
+      "imageUrl": "https://picsum.photos/seed/mangrove-planting-team/600/400",
+      "imageHint": "mangrove planting"
     },
     {
       "id": "post-image-upload",
-      "description": "A newly planted mangrove sapling.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-planting/600/400",
+      "description": "A newly planted mangrove sapling in the mudflats.",
+      "imageUrl": "https://picsum.photos/seed/new-mangrove-sapling/600/400",
       "imageHint": "mangrove planting"
     }
   ]
