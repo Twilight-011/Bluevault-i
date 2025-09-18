@@ -19,6 +19,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUp, Minus, Store, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
+import { BuyCreditsDialog } from './buy-credits-dialog';
 
 type Credit = {
   project: string;
@@ -169,12 +170,19 @@ export function CarbonCreditMarket({ role }: { role: string | null }) {
                 <TableCell className="text-right">
                   {credit.available.toLocaleString()}
                 </TableCell>
-                {role !== 'ngo-manager' && <TableCell className="text-right">
-                  <Button size="sm" variant="outline">
-                    <TrendingUp className="mr-2 h-4 w-4"/>
-                    Trade
-                  </Button>
-                </TableCell>}
+                {role === 'company' && (
+                  <TableCell className="text-right">
+                    <BuyCreditsDialog credit={credit} />
+                  </TableCell>
+                )}
+                {role === 'government-admin' && (
+                    <TableCell className="text-right">
+                        <Button size="sm" variant="outline">
+                            <TrendingUp className="mr-2 h-4 w-4"/>
+                            Trade
+                        </Button>
+                    </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
