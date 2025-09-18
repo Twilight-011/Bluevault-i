@@ -115,7 +115,7 @@ export default function DashboardLayout({
             );
         case 'government-admin':
             return allNavItems.filter(item => 
-                ['dashboard', 'government-admin'].includes(item.role)
+                ['dashboard', 'government-admin', 'marketplace'].includes(item.role)
             );
         default:
             return allNavItems.filter(item => item.role === 'dashboard');

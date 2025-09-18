@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, ArrowUp, Minus, Store, TrendingUp } from 'lucide-react';
+import { ArrowDown, ArrowUp, ArrowUpRight, Minus, Store } from 'lucide-react';
 import Link from 'next/link';
 import { BuyCreditsDialog } from './buy-credits-dialog';
 
@@ -111,7 +111,7 @@ export function CarbonCreditMarket({ role }: { role: string | null }) {
     const interval = setInterval(() => {
       setCredits((prevCredits) =>
         prevCredits.map((credit) => {
-          const change = (Math.random() - 0.5) * 20; // Adjusted for INR
+          const change = (Math.random() - 0.5) * 20;
           const newPrice = Math.max(1000, credit.price + change);
           let newTrend: 'up' | 'down' | 'stable' = 'stable';
           if (newPrice > credit.price) newTrend = 'up';
@@ -141,7 +141,7 @@ export function CarbonCreditMarket({ role }: { role: string | null }) {
             <TableRow>
               <TableHead>Project</TableHead>
               <TableHead className="text-center">Health</TableHead>
-              <TableHead className="text-right">Price (INR)</TableHead>
+              <TableHead className="text-right">Price</TableHead>
               <TableHead className="text-right">Available (tCO2e)</TableHead>
               {role !== 'ngo-manager' && <TableHead className="text-right">Action</TableHead>}
             </TableRow>
@@ -178,9 +178,10 @@ export function CarbonCreditMarket({ role }: { role: string | null }) {
                 )}
                 {role === 'government-admin' && (
                     <TableCell className="text-right">
-                        <Button size="sm" variant="outline">
-                            <TrendingUp className="mr-2 h-4 w-4"/>
-                            Trade
+                        <Button size="sm" variant="outline" asChild>
+                           <Link href={`/dashboard/project/${credit.slug}`}>
+                                View <ArrowUpRight className="ml-2 h-4 w-4"/>
+                           </Link>
                         </Button>
                     </TableCell>
                 )}
