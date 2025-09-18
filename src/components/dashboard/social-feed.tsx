@@ -28,7 +28,7 @@ export default function SocialFeed() {
       {isExplorePage && (
          <Card className="bg-transparent shadow-none border-none">
             <CardHeader className="text-center">
-                <CardTitle className="font-headline text-3xl">Updates</CardTitle>
+                <CardTitle className="font-headline text-3xl">BlueVault Feed</CardTitle>
                 <CardDescription>A live feed of updates from all stakeholders.</CardDescription>
             </CardHeader>
         </Card>
