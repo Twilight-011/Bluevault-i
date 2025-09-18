@@ -100,37 +100,37 @@
     {
       "id": "post-image-1",
       "description": "Two mangrove trees on a beach at sunset.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-sunset/600/400",
+      "imageUrl": "https://picsum.photos/seed/mangrove-at-sunset/600/400",
       "imageHint": "mangrove sunset"
     },
     {
       "id": "post-image-2",
       "description": "A dense tangle of mangrove roots above the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-tangle/600/400",
+      "imageUrl": "https://picsum.photos/seed/mangrove-root-tangle/600/400",
       "imageHint": "mangrove roots"
     },
     {
       "id": "post-image-3",
       "description": "A winding waterway through a lush mangrove forest.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-creek/600/400",
+      "imageUrl": "https://picsum.photos/seed/mangrove-river/600/400",
       "imageHint": "mangrove river"
     },
     {
       "id": "post-image-4",
       "description": "A split shot showing mangrove roots above and below the water.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-split/600/400",
+      "imageUrl": "https://picsum.photos/seed/mangrove-underwater/600/400",
       "imageHint": "underwater mangrove"
     },
      {
       "id": "post-image-5",
       "description": "A wall of green mangrove trees lining a calm waterway.",
-      "imageUrl": "https://picsum.photos/seed/mangrove-wall/600/400",
+      "imageUrl": "https://picsum.photos/seed/mangrove-green-wall/600/400",
       "imageHint": "mangrove forest"
     },
     {
       "id": "post-image-upload",
       "description": "A newly planted mangrove sapling in the mudflats.",
-      "imageUrl": "https://picsum.photos/seed/new-sapling-beach/600/400",
+      "imageUrl": "https://picsum.photos/seed/new-sapling-in-mud/600/400",
       "imageHint": "mangrove planting"
     }
   ]
