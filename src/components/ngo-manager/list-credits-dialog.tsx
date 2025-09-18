@@ -26,15 +26,27 @@ interface ListCreditsDialogProps {
 export function ListCreditsDialog({ project }: ListCreditsDialogProps) {
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState('');
+  const [price, setPrice] = useState('');
   const { toast } = useToast();
 
   const handleListCredits = () => {
     const numericAmount = parseInt(amount, 10);
+    const numericPrice = parseFloat(price);
+
     if (isNaN(numericAmount) || numericAmount <= 0) {
       toast({
         variant: 'destructive',
         title: 'Invalid Amount',
         description: 'Please enter a valid number of credits to list.',
+      });
+      return;
+    }
+
+    if (isNaN(numericPrice) || numericPrice <= 0) {
+       toast({
+        variant: 'destructive',
+        title: 'Invalid Price',
+        description: 'Please enter a valid price for the credits.',
       });
       return;
     }
@@ -49,13 +61,14 @@ export function ListCreditsDialog({ project }: ListCreditsDialogProps) {
     }
 
     // Simulate listing credits
-    console.log(`Listing ${amount} credits for ${project.name}`);
+    console.log(`Listing ${amount} credits for ${project.name} at ₹${price} each.`);
     toast({
       title: 'Credits Listed Successfully',
-      description: `You have listed ${numericAmount.toLocaleString()} credits for ${project.name} on the marketplace.`,
+      description: `You have listed ${numericAmount.toLocaleString()} credits for ${project.name} on the marketplace at ₹${numericPrice.toFixed(2)} each.`,
     });
     setOpen(false);
     setAmount('');
+    setPrice('');
   };
 
   return (
@@ -70,7 +83,7 @@ export function ListCreditsDialog({ project }: ListCreditsDialogProps) {
         <DialogHeader>
           <DialogTitle>List Credits for {project.name}</DialogTitle>
           <DialogDescription>
-            Enter the amount of carbon credits (tCO₂e) you want to list on the marketplace.
+            Enter the amount and price per credit (tCO₂e) you want to list on the marketplace.
             You have a total of {project.carbonCredits.toLocaleString()} credits available.
           </DialogDescription>
         </DialogHeader>
@@ -87,6 +100,24 @@ export function ListCreditsDialog({ project }: ListCreditsDialogProps) {
               placeholder={`e.g., ${Math.floor(project.carbonCredits / 4)}`}
               className="col-span-3"
             />
+          </div>
+           <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="price" className="text-right">
+              Price (INR)
+            </Label>
+             <div className="relative col-span-3">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
+                  ₹
+                </span>
+                <Input
+                  id="price"
+                  type="number"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="e.g., 2150.00"
+                  className="pl-7"
+                />
+            </div>
           </div>
         </div>
         <DialogFooter>
