@@ -13,7 +13,7 @@ import { placeholderImages } from '@/lib/placeholder-images';
 import { useSocialFeed } from '@/context/social-feed-context';
 import { formatDistanceToNow } from 'date-fns';
 import { Button } from '../ui/button';
-import { Heart, MessageCircle, Send } from 'lucide-react';
+import { Heart, MessageCircle, Send, Image as ImageIcon } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -75,10 +75,7 @@ export default function SocialFeed() {
         const avatar = placeholderImages.find(
           (img) => img.id === item.avatarId
         );
-        const postImage = item.imageId ? placeholderImages.find(
-          (img) => img.id === item.imageId
-        ) : null;
-
+        
         return (
           <Card key={item.id} className="shadow-lg">
             <CardHeader>
@@ -114,15 +111,12 @@ export default function SocialFeed() {
             </CardHeader>
             <CardContent>
               <p className="mb-4 text-sm">{item.content}</p>
-              {postImage && (
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
-                  <Image
-                    src={postImage.imageUrl}
-                    alt={postImage.description}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={postImage.imageHint}
-                  />
+              {item.imageId && (
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border bg-muted flex items-center justify-center">
+                  <div className="text-center text-muted-foreground">
+                    <ImageIcon className="h-10 w-10 mx-auto mb-2" />
+                    <p className="font-semibold">Image Coming Soon</p>
+                  </div>
                 </div>
               )}
             </CardContent>
