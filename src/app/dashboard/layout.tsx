@@ -12,14 +12,6 @@ import {
   Store,
 } from 'lucide-react';
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { UserNav } from '@/components/dashboard/user-nav';
@@ -140,81 +132,6 @@ export default function DashboardLayout({
 
   const navItems = getNavItems();
 
-
-  const getBreadcrumb = () => {
-    const parts = pathname.split('/').filter(Boolean);
-    const isExplorePage = parts.length === 1 && parts[0] === 'dashboard';
-
-    let currentPageLabel = '';
-    const roleFromPath = currentRole && currentRole !== 'dashboard' ? currentRole : null;
-
-    if (isExplorePage) {
-       return (
-        <BreadcrumbItem>
-            <BreadcrumbPage>Explore</BreadcrumbPage>
-        </BreadcrumbItem>
-       )
-    }
-
-    const currentPage = allNavItems.find(item => item.href === pathname);
-
-    if (roleFromPath) {
-        const roleItem = allNavItems.find(item => item.role === roleFromPath);
-        if (roleItem) {
-            currentPageLabel = roleItem.label;
-        }
-    }
-
-
-    return (
-      <>
-        <BreadcrumbItem>
-           <BreadcrumbLink asChild>
-              <Link href={`/dashboard`}>Explore</Link>
-           </BreadcrumbLink>
-        </BreadcrumbItem>
-        {currentPageLabel && <BreadcrumbSeparator />}
-        {currentPageLabel && (
-          <BreadcrumbItem>
-             {pathname.includes('/project/') || pathname.includes('/mrv-report') || pathname.includes('/marketplace') ? (
-                <BreadcrumbLink asChild>
-                    <Link href={`/dashboard/${roleFromPath}`}>{currentPageLabel}</Link>
-                </BreadcrumbLink>
-             ) : (
-                <BreadcrumbPage className="capitalize font-medium">
-                    {currentPageLabel}
-                </BreadcrumbPage>
-             )}
-          </BreadcrumbItem>
-        )}
-         {currentPage && currentPage.role === 'marketplace' && <BreadcrumbSeparator />}
-         {currentPage && currentPage.role === 'marketplace' && (
-             <BreadcrumbItem>
-                <BreadcrumbPage className="capitalize font-medium">
-                    {currentPage.label}
-                </BreadcrumbPage>
-            </BreadcrumbItem>
-         )}
-          {pathname.startsWith('/dashboard/project') && parts.length > 2 && <BreadcrumbSeparator />}
-          {pathname.startsWith('/dashboard/project') && parts.length > 2 && (
-             <BreadcrumbItem>
-                <BreadcrumbPage className="capitalize font-medium">
-                    Project: {parts[parts.length -1].replace(/-/g, ' ')}
-                </BreadcrumbPage>
-            </BreadcrumbItem>
-          )}
-           {pathname.startsWith('/dashboard/mrv-report') && (
-            <>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                    <BreadcrumbPage>MRV Report</BreadcrumbPage>
-                </BreadcrumbItem>
-            </>
-           )}
-      </>
-    );
-  };
-
   return (
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
         <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-card px-4 sm:px-6">
@@ -282,11 +199,6 @@ export default function DashboardLayout({
             </Sheet>
 
             <div className="relative ml-auto flex items-center gap-4 md:grow-0">
-                <Breadcrumb className="hidden md:flex">
-                    <BreadcrumbList>
-                        {getBreadcrumb()}
-                    </BreadcrumbList>
-                </Breadcrumb>
                 <UserNav />
             </div>
 
