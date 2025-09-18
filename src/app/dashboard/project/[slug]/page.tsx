@@ -20,7 +20,7 @@ const projects = [
     location: 'West Bengal, IN',
     description: 'A flagship project focused on reforesting the Sunderbans, the largest mangrove forest in the world. This project aims to protect the Bengal tiger habitat and create a natural barrier against storm surges.',
     heroImageId: 'project-hero-1',
-    carbonCredits: '5,000'
+    carbonCredits: '5000'
   },
   {
     slug: 'mahanadi-delta-project',
@@ -28,7 +28,7 @@ const projects = [
     location: 'Odisha, IN',
     description: 'This initiative targets the Mahanadi delta region, which is critical for local fisheries and biodiversity. We are working with local communities to restore mangrove cover and promote sustainable aquaculture.',
     heroImageId: 'project-hero-2',
-    carbonCredits: '12,000'
+    carbonCredits: '12000'
   },
   {
     slug: 'pichavaram-initiative',
@@ -36,7 +36,7 @@ const projects = [
     location: 'Tamil Nadu, IN',
     description: 'Pichavaram is one of the largest mangrove forests in India. Our work here focuses on enhancing the natural regeneration of mangroves and using technology to monitor forest health in real-time.',
     heroImageId: 'project-hero-3',
-    carbonCredits: '2,500'
+    carbonCredits: '2500'
   },
   {
     slug: 'godavari-estuary-greens',
@@ -44,7 +44,7 @@ const projects = [
     location: 'Andhra Pradesh, IN',
     description: "The Godavari estuary is a vital ecosystem that has faced significant degradation. This project involves large-scale planting drives and the creation of community-managed nurseries to ensure a supply of healthy saplings.",
     heroImageId: 'project-hero-4',
-    carbonCredits: '8,000'
+    carbonCredits: '8000'
   },
    {
     slug: 'krishna-mangrove-regeneration',
@@ -52,7 +52,7 @@ const projects = [
     location: 'Andhra Pradesh, IN',
     description: "Revitalizing the Krishna river delta's mangrove ecosystem to support local livelihoods and enhance coastal resilience.",
     heroImageId: 'project-hero-1',
-    carbonCredits: '6,500'
+    carbonCredits: '6500'
   },
    {
     slug: 'mumbai-coastal-protection',
@@ -60,7 +60,7 @@ const projects = [
     location: 'Maharashtra, IN',
     description: "A crucial urban mangrove project aimed at protecting Mumbai's coastline from erosion and sea-level rise, creating a green lung for the city.",
     heroImageId: 'project-hero-2',
-    carbonCredits: '3,000'
+    carbonCredits: '3000'
   },
   {
     slug: 'maldives-atoll-conservation',
@@ -68,7 +68,7 @@ const projects = [
     location: 'Maldives',
     description: "Protecting the fragile coral-based ecosystems of the Maldives through targeted mangrove restoration on various atolls.",
     heroImageId: 'project-hero-3',
-    carbonCredits: '7,500'
+    carbonCredits: '7500'
   },
   {
     slug: 'amazon-delta-initiative',
@@ -76,7 +76,7 @@ const projects = [
     location: 'Brazil',
     description: "A large-scale conservation effort at the mouth of the Amazon River, focusing on one of the world's most extensive and biodiverse mangrove systems.",
     heroImageId: 'project-hero-4',
-    carbonCredits: '25,000'
+    carbonCredits: '25000'
   },
 ];
 
