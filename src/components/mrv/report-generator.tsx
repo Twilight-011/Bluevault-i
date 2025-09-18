@@ -1,9 +1,11 @@
+
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useSearchParams } from 'next/navigation';
 import { generateDynamicMRVReport } from '@/ai/flows/generate-dynamic-mrv-report';
 import { Button } from '@/components/ui/button';
 import {
@@ -47,16 +49,17 @@ const defaultProjectData = `Project: Sunderbans Restoration, Period: Q2 2024.
 const defaultNgoDescription = `Our efforts in Q2 2024 were focused on scaling up planting activities while strengthening our community partnerships. We introduced advanced monitoring drones to improve accuracy in survival rate tracking. Our educational workshops have been a great success, leading to increased local stewardship of the mangrove ecosystem. We're optimistic that these combined efforts are creating a resilient and thriving habitat.`;
 
 
-export function ReportGenerator() {
+function ReportGeneratorComponent() {
   const { toast } = useToast();
   const [report, setReport] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      projectData: defaultProjectData,
-      ngoDescription: defaultNgoDescription,
+      projectData: searchParams.get('projectData') || defaultProjectData,
+      ngoDescription: searchParams.get('ngoDescription') || defaultNgoDescription,
     },
   });
 
@@ -82,6 +85,17 @@ export function ReportGenerator() {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    const projectData = searchParams.get('projectData');
+    const ngoDescription = searchParams.get('ngoDescription');
+    if (projectData && ngoDescription) {
+        form.setValue('projectData', projectData);
+        form.setValue('ngoDescription', ngoDescription);
+        onSubmit({ projectData, ngoDescription });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   return (
     <div className="grid gap-8 md:grid-cols-2">
@@ -185,4 +199,12 @@ export function ReportGenerator() {
       </Card>
     </div>
   );
+}
+
+export function ReportGenerator() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ReportGeneratorComponent />
+        </Suspense>
+    )
 }

@@ -12,12 +12,10 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import {
   Thermometer,
   Wind,
   Camera,
-  Download,
   Eye,
   Clock,
   MapPin,
@@ -29,6 +27,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 
 const DroneIcon = () => (
@@ -115,6 +114,7 @@ export function ProjectOverviewCard({
   autoMintEnabled
 }: ProjectOverviewCardProps) {
   const { toast } = useToast();
+  const router = useRouter();
   const monitoringStatusColor =
     monitoringStatus === 'Verified' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
     const contractStatusColor =
@@ -126,6 +126,28 @@ export function ProjectOverviewCard({
             title: "Minting Credits",
             description: `Successfully minted ${ (creditsTotal - creditsMinted).toLocaleString() } new credits for the ${projectName} project.`,
         });
+    }
+
+    const handleViewDetailedReport = () => {
+        const projectData = `Project: ${projectName}, Location: ${location}, Flight ID: ${flightId}
+- Monitoring Status: ${monitoringStatus}
+- Timestamp: ${timestamp}
+- Temperature: ${temperature}, Humidity: ${humidity}, Wind Speed: ${windSpeed}
+- Images Captured: ${images}
+- Carbon Capture Estimate: ${carbonCapture} tCO2
+- Ecosystem Health Score: ${ecosystemHealth}%
+- Contract: ${contract} (${contractStatus})
+- Credits Minted: ${creditsMinted} of ${creditsTotal}
+- Participants: ${participants}`;
+
+        const ngoDescription = `This report is auto-generated based on the latest verified data for the ${projectName} project. The NGO's primary focus has been on scaling monitoring operations and ensuring data integrity for accurate credit minting and distribution. Community involvement remains a key priority, with ongoing efforts to engage local stakeholders.`;
+        
+        const query = new URLSearchParams({
+            projectData: projectData,
+            ngoDescription: ngoDescription
+        });
+
+        router.push(`/dashboard/mrv-report?${query.toString()}`);
     }
 
   return (
@@ -252,10 +274,8 @@ export function ProjectOverviewCard({
         </div>
       </CardContent>
       <CardFooter className="gap-2 border-t pt-6 mt-4">
-        <Button variant="outline" className="w-full" asChild>
-          <Link href="/dashboard/mrv-report">
+        <Button variant="outline" className="w-full" onClick={handleViewDetailedReport}>
             <Eye className="mr-2 h-4 w-4" /> View Detailed Report
-          </Link>
         </Button>
         <Button variant="outline" className="w-full" asChild>
           <Link href="https://etherscan.io/" target="_blank">
