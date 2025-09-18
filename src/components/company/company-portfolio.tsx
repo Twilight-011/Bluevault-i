@@ -20,38 +20,36 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Briefcase, TrendingUp, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-
-const portfolio = {
-    totalCredits: 750,
-    investments: [
-        {
-            project: 'Sunderbans Restoration',
-            slug: 'sunderbans-restoration',
-            credits: 500,
-            avgPrice: 2100.75,
-            status: 'active'
-        },
-        {
-            project: 'Pichavaram Initiative',
-            slug: 'pichavaram-initiative',
-            credits: 250,
-            avgPrice: 2650.00,
-            status: 'active'
-        }
-    ]
-}
+import { companyPortfolios, type CompanyPortfolioData } from '@/lib/company-portfolios';
 
 const StatusBadge = ({ status }: { status: string }) => {
     if (status === 'active') return <Badge variant="default">Active</Badge>
     return <Badge variant="secondary">{status}</Badge>
 }
 
-export function CompanyPortfolio() {
+export function CompanyPortfolio({ companyName }: { companyName: string }) {
+  const portfolio: CompanyPortfolioData | undefined = companyPortfolios.find(p => p.companyName === companyName);
+
+  if (!portfolio) {
+    return (
+        <Card className="shadow-lg">
+            <CardHeader>
+                 <CardTitle className="flex items-center gap-2 font-headline">
+                    <Briefcase className="h-6 w-6" /> Portfolio Not Found
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p>The portfolio for "{companyName}" could not be found.</p>
+            </CardContent>
+        </Card>
+    )
+  }
+
   return (
     <Card className="shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 font-headline">
-          <Briefcase className="h-6 w-6" /> Company Portfolio
+          <Briefcase className="h-6 w-6" /> {portfolio.companyName} Portfolio
         </CardTitle>
         <CardDescription>
           An overview of your carbon credit investments.
@@ -75,7 +73,7 @@ export function CompanyPortfolio() {
                         <TableRow>
                         <TableHead>Project</TableHead>
                         <TableHead className="text-right">Credits (tCO₂e)</TableHead>
-                        <TableHead className="text-right">Avg. Price (INR)</TableHead>
+                        <TableHead className="text-right">Avg. Price</TableHead>
                         <TableHead className="text-center">Status</TableHead>
                         <TableHead className="text-right">Details</TableHead>
                         </TableRow>

@@ -22,7 +22,7 @@ const companies = [
     description: 'A global leader in software solutions, committed to achieving carbon neutrality by 2030 through strategic partnerships and green initiatives.',
     avatarId: 'avatar-3',
     totalOffset: 750,
-    portfolioSlug: '/dashboard/company' 
+    portfolioSlug: '/dashboard/company?name=Eco%20Corp.' 
   },
   {
     name: 'GreenShift Energy',
@@ -30,7 +30,7 @@ const companies = [
     description: 'Pioneering sustainable energy solutions for a cleaner planet. Our investment in carbon credits is a core part of our mission.',
     avatarId: 'avatar-7',
     totalOffset: 1200,
-    portfolioSlug: '/dashboard/company'
+    portfolioSlug: '/dashboard/company?name=GreenShift%20Energy'
   },
   {
     name: 'AquaPure Logistics',
@@ -38,7 +38,7 @@ const companies = [
     description: 'Revolutionizing logistics with a focus on reducing emissions. We partner with environmental projects to offset our operational footprint.',
     avatarId: 'avatar-8',
     totalOffset: 500,
-    portfolioSlug: '/dashboard/company'
+    portfolioSlug: '/dashboard/company?name=AquaPure%20Logistics'
   },
   {
     name: 'Innovate Apparel',
@@ -46,7 +46,7 @@ const companies = [
     description: 'Creating sustainable fashion for the conscious consumer. We are dedicated to a transparent and eco-friendly supply chain.',
     avatarId: 'avatar-9',
     totalOffset: 350,
-    portfolioSlug: '/dashboard/company'
+    portfolioSlug: '/dashboard/company?name=Innovate%20Apparel'
   }
 ];
 
@@ -105,4 +105,3 @@ export default function CompaniesPage() {
     </div>
   );
 }
-
