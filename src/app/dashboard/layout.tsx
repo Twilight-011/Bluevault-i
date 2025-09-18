@@ -1,8 +1,6 @@
 'use client';
 import Link from 'next/link';
 import {
-  Bell,
-  PanelLeft,
   Leaf,
   HardHat,
   Users,
@@ -13,12 +11,18 @@ import {
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { UserNav } from '@/components/dashboard/user-nav';
 import { usePathname } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui/sheet';
+import { PanelLeft } from 'lucide-react';
+
 
 const allNavItems = [
    {
@@ -66,40 +70,21 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const { toast } = useToast();
-  // Store role in state to persist it across navigation
-  const [currentRole, setCurrentRole] = useState<string | null>(null);
+  const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
-    const roleFromPath = pathname.split('/')[2];
-    if (roleFromPath && !['project', 'mrv-report', 'marketplace'].includes(roleFromPath)) {
-      setCurrentRole(roleFromPath);
-    } else if (pathname === '/dashboard') {
-        setCurrentRole('dashboard'); // Special case for explore
-    } else if (pathname.startsWith('/dashboard/project') || pathname === '/dashboard/mrv-report' || pathname === '/dashboard/marketplace') {
-        // Persist role when navigating to sub-pages
-        if (!currentRole && typeof window !== 'undefined') {
-            const storedRole = localStorage.getItem('userRole');
-            if (storedRole) setCurrentRole(storedRole);
-        }
+    if (typeof window !== 'undefined') {
+      const storedRole = localStorage.getItem('userRole');
+      setUserRole(storedRole);
     }
+  }, [pathname]);
 
-  }, [pathname, currentRole]);
-
-  useEffect(() => {
-    if (currentRole && currentRole !== 'dashboard') {
-        localStorage.setItem('userRole', currentRole);
-    } else {
-        localStorage.removeItem('userRole')
-    }
-  }, [currentRole]);
-  
   const handleNavClick = (e: React.MouseEvent, targetRole: string) => {
-    if (targetRole === 'dashboard' || targetRole === 'marketplace') return;
-    
-    // Determine the user's actual role from state.
-    const userRole = currentRole;
+    if (!userRole || targetRole === 'dashboard' || targetRole === 'marketplace') {
+      return;
+    }
 
-    if (userRole && userRole !== 'dashboard' && userRole !== targetRole) {
+    if (userRole !== targetRole) {
       e.preventDefault();
       toast({
         variant: 'destructive',
@@ -110,24 +95,30 @@ export default function DashboardLayout({
   };
 
   const getNavItems = () => {
-    if (!currentRole || currentRole === 'dashboard') {
-        return allNavItems.filter(item => !['field-officer', 'ngo-manager', 'company', 'government-admin', 'marketplace'].includes(item.role));
+    if (!userRole) {
+        return allNavItems.filter(item => item.role === 'dashboard');
     }
-
-    if (currentRole === 'field-officer') {
-        return allNavItems.filter(item => ['dashboard', 'field-officer'].includes(item.role));
+    
+    switch (userRole) {
+        case 'field-officer':
+            return allNavItems.filter(item => 
+                ['dashboard', 'field-officer'].includes(item.role)
+            );
+        case 'ngo-manager':
+            return allNavItems.filter(item => 
+                ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role)
+            );
+        case 'company':
+            return allNavItems.filter(item => 
+                ['dashboard', 'company', 'marketplace'].includes(item.role)
+            );
+        case 'government-admin':
+            return allNavItems.filter(item => 
+                ['dashboard', 'government-admin', 'marketplace'].includes(item.role)
+            );
+        default:
+            return allNavItems.filter(item => item.role === 'dashboard');
     }
-    if (currentRole === 'ngo-manager') {
-        return allNavItems.filter(item => ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role));
-    }
-     if (currentRole === 'company') {
-        return allNavItems.filter(item => ['dashboard', 'company', 'marketplace'].includes(item.role));
-    }
-    if (currentRole === 'government-admin') {
-        return allNavItems.filter(item => ['dashboard', 'government-admin', 'marketplace'].includes(item.role));
-    }
-
-    return allNavItems;
   }
 
   const navItems = getNavItems();
@@ -157,7 +148,6 @@ export default function DashboardLayout({
                   </Link>
                 ))}
             </nav>
-
 
             <Sheet>
               <SheetTrigger asChild>
