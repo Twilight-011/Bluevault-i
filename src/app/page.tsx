@@ -8,7 +8,7 @@ export default function LoginPage() {
   const loginImage = placeholderImages.find((img) => img.id === 'login-hero');
 
   return (
-    <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2">
+    <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
       <div className="hidden bg-muted lg:block relative">
         {loginImage && (
             <Image
