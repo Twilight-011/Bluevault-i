@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { AlertProvider } from '@/context/alert-context';
+import { SocialFeedProvider } from '@/context/social-feed-context';
 
 export const metadata: Metadata = {
   title: 'BlueVault',
@@ -25,8 +26,10 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <AlertProvider>
-          {children}
-          <Toaster />
+          <SocialFeedProvider>
+            {children}
+            <Toaster />
+          </SocialFeedProvider>
         </AlertProvider>
       </body>
     </html>

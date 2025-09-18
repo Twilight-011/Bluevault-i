@@ -18,9 +18,11 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, ArrowUp, Minus, Store, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 
 type Credit = {
   project: string;
+  slug: string;
   location: string;
   price: number;
   healthScore: number;
@@ -31,6 +33,7 @@ type Credit = {
 const initialCredits: Credit[] = [
   {
     project: 'Sunderbans Restoration',
+    slug: 'sunderbans-restoration',
     location: 'West Bengal, IN',
     price: 25.5,
     healthScore: 92,
@@ -39,6 +42,7 @@ const initialCredits: Credit[] = [
   },
   {
     project: 'Mahanadi Delta Project',
+    slug: 'mahanadi-delta-project',
     location: 'Odisha, IN',
     price: 18.75,
     healthScore: 85,
@@ -47,6 +51,7 @@ const initialCredits: Credit[] = [
   },
   {
     project: 'Pichavaram Initiative',
+    slug: 'pichavaram-initiative',
     location: 'Tamil Nadu, IN',
     price: 32.1,
     healthScore: 95,
@@ -55,6 +60,7 @@ const initialCredits: Credit[] = [
   },
   {
     project: 'Godavari Estuary Greens',
+    slug: 'godavari-estuary-greens',
     location: 'Andhra Pradesh, IN',
     price: 21.0,
     healthScore: 78,
@@ -124,7 +130,9 @@ export function CarbonCreditMarket() {
             {credits.map((credit) => (
               <TableRow key={credit.project}>
                 <TableCell>
-                  <div className="font-medium">{credit.project}</div>
+                  <Link href={`/dashboard/project/${credit.slug}`} className="hover:underline">
+                    <div className="font-medium">{credit.project}</div>
+                  </Link>
                   <div className="text-sm text-muted-foreground">
                     {credit.location}
                   </div>

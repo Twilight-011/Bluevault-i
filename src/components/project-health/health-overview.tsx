@@ -1,5 +1,5 @@
 'use client';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import {
   Card,
   CardContent,
@@ -11,48 +11,49 @@ import {
   ChartContainer,
   ChartTooltipContent,
   ChartConfig,
+  ChartLegendContent,
 } from '@/components/ui/chart';
 
 const chartData = [
   {
     month: 'January',
-    ngoEffort: 186,
-    carbonProduction: 80,
+    treesPlanted: 1860,
+    survivalRate: 80,
   },
   {
     month: 'February',
-    ngoEffort: 305,
-    carbonProduction: 200,
+    treesPlanted: 3050,
+    survivalRate: 82,
   },
   {
     month: 'March',
-    ngoEffort: 237,
-    carbonProduction: 120,
+    treesPlanted: 2370,
+    survivalRate: 85,
   },
   {
     month: 'April',
-    ngoEffort: 173,
-    carbonProduction: 190,
+    treesPlanted: 1730,
+    survivalRate: 88,
   },
   {
     month: 'May',
-    ngoEffort: 209,
-    carbonProduction: 130,
+    treesPlanted: 2090,
+    survivalRate: 91,
   },
   {
     month: 'June',
-    ngoEffort: 214,
-    carbonProduction: 140,
+    treesPlanted: 2540,
+    survivalRate: 93,
   },
 ];
 
 const chartConfig = {
-  carbonProduction: {
-    label: 'Carbon Production (tCO2e)',
+  treesPlanted: {
+    label: 'Trees Planted',
     color: 'hsl(var(--primary))',
   },
-  ngoEffort: {
-    label: 'NGO Effort Score',
+  survivalRate: {
+    label: 'Survival Rate (%)',
     color: 'hsl(var(--accent))',
   },
 } satisfies ChartConfig;
@@ -62,29 +63,26 @@ export function HealthOverview() {
     <Card className="shadow-lg">
       <CardHeader>
         <CardTitle className="font-headline">Project Health Overview</CardTitle>
-        <CardDescription>Carbon Production vs. NGO Effort</CardDescription>
+        <CardDescription>Monthly Planting and Survival Rates</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-6">
-            <p className="text-sm text-muted-foreground">
-                Our NGO focuses on a holistic approach, combining new plantings with community education to ensure long-term project sustainability. We believe this strategy maximizes both ecological and social impact, leading to robust carbon sequestration over time.
-            </p>
-          <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
-            <BarChart accessibilityLayer data={chartData}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="month"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-              />
-              <YAxis />
-              <Tooltip content={<ChartTooltipContent />} />
-              <Bar dataKey="carbonProduction" fill="var(--color-carbonProduction)" radius={4} />
-              <Bar dataKey="ngoEffort" fill="var(--color-ngoEffort)" radius={4} />
-            </BarChart>
-          </ChartContainer>
-        </div>
+        <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
+          <BarChart accessibilityLayer data={chartData}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              tickMargin={10}
+              axisLine={false}
+            />
+            <YAxis yAxisId="left" orientation="left" stroke="hsl(var(--primary))" />
+            <YAxis yAxisId="right" orientation="right" domain={[60, 100]} stroke="hsl(var(--accent))" />
+            <Tooltip content={<ChartTooltipContent />} />
+            <Legend content={<ChartLegendContent />} />
+            <Bar yAxisId="left" dataKey="treesPlanted" fill="var(--color-treesPlanted)" radius={4} />
+            <Bar yAxisId="right" dataKey="survivalRate" fill="var(--color-survivalRate)" radius={4} />
+          </BarChart>
+        </ChartContainer>
       </CardContent>
     </Card>
   );

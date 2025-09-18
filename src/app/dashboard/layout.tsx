@@ -85,13 +85,48 @@ export default function DashboardLayout({
     },
   ];
 
+  const getBreadcrumb = () => {
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length === 2) {
+      return (
+        <BreadcrumbPage className="capitalize font-medium">
+          {parts[1].replace('-', ' ')}
+        </BreadcrumbPage>
+      );
+    }
+    if (parts.length > 2) {
+      return (
+        <>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href={`/${parts[0]}/${parts[1]}`}>
+                {parts[1].replace('-', ' ')}
+              </Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage className="capitalize font-medium">
+              {decodeURIComponent(parts[2].replace('-', ' '))}
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </>
+      );
+    }
+    return (
+      <BreadcrumbItem>
+        <BreadcrumbPage>Dashboard</BreadcrumbPage>
+      </BreadcrumbItem>
+    );
+  };
+
   return (
     <TooltipProvider>
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
         <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-card sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link
-              href="#"
+              href="/dashboard"
               className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
             >
               <Leaf className="h-4 w-4 transition-all group-hover:scale-110" />
@@ -129,7 +164,7 @@ export default function DashboardLayout({
               <SheetContent side="left" className="sm:max-w-xs">
                 <nav className="grid gap-6 text-lg font-medium">
                   <Link
-                    href="#"
+                    href="/dashboard"
                     className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                   >
                     <Leaf className="h-5 w-5 transition-all group-hover:scale-110" />
@@ -156,15 +191,11 @@ export default function DashboardLayout({
               <BreadcrumbList>
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href="#">Dashboard</Link>
+                    <Link href="/dashboard">Dashboard</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage className="capitalize font-medium">
-                    {role.replace('-', ' ')}
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
+                {getBreadcrumb()}
               </BreadcrumbList>
             </Breadcrumb>
             <div className="relative ml-auto flex-1 md:grow-0" />

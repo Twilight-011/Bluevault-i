@@ -1,18 +1,18 @@
 'use client';
 import { DataInputForm } from '@/components/field-officer/data-input-form';
-import SocialFeed from '@/components/dashboard/social-feed';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Siren } from 'lucide-react';
 import { useAlerts } from '@/context/alert-context';
+import { PostCreator } from '@/components/field-officer/post-creator';
 
 export default function FieldOfficerDashboard() {
   const { addAlert } = useAlerts();
 
   const handleEmergency = () => {
     addAlert(
-      "Immediate assistance required due to illegal logging activity.",
-      "Sunderbans Sector 4B"
+      'Immediate assistance required due to illegal logging activity.',
+      'Sunderbans Sector 4B'
     );
   };
 
@@ -22,6 +22,7 @@ export default function FieldOfficerDashboard() {
         <DataInputForm />
       </div>
       <div className="grid auto-rows-max gap-8">
+        <PostCreator />
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle>Emergency Protocol</CardTitle>
@@ -39,7 +40,6 @@ export default function FieldOfficerDashboard() {
             </Button>
           </CardContent>
         </Card>
-        <SocialFeed />
       </div>
     </div>
   );

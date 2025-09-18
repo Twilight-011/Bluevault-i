@@ -23,6 +23,30 @@
       "description": "Avatar for a third user",
       "imageUrl": "https://picsum.photos/seed/avatar3/100/100",
       "imageHint": "person portrait"
+    },
+    {
+        "id": "project-hero-1",
+        "description": "A dense mangrove forest with a narrow water channel.",
+        "imageUrl": "https://picsum.photos/seed/project1/1280/400",
+        "imageHint": "mangrove channel"
+    },
+    {
+        "id": "project-hero-2",
+        "description": "Sunlight filtering through mangrove leaves.",
+        "imageUrl": "https://picsum.photos/seed/project2/1280/400",
+        "imageHint": "mangrove sunlight"
+    },
+    {
+        "id": "project-hero-3",
+        "description": "A wide shot of a mangrove coastline.",
+        "imageUrl": "https://picsum.photos/seed/project3/1280/400",
+        "imageHint": "mangrove coastline"
+    },
+    {
+        "id": "project-hero-4",
+        "description": "Close up of mangrove roots in the water.",
+        "imageUrl": "https://picsum.photos/seed/project4/1280/400",
+        "imageHint": "mangrove roots"
     }
   ]
 }

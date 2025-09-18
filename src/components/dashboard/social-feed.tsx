@@ -9,35 +9,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { placeholderImages } from '@/lib/placeholder-images';
 import { ScrollArea } from '../ui/scroll-area';
-
-const feedItems = [
-  {
-    user: 'Alia Khan',
-    handle: 'NGO Manager',
-    avatarId: 'avatar-1',
-    time: '2h ago',
-    content:
-      'Great progress this week team! We’ve planted over 500 new saplings in the northern corridor. Let’s keep up the momentum!',
-  },
-  {
-    user: 'Rajesh Kumar',
-    handle: 'Field Officer',
-    avatarId: 'avatar-2',
-    time: '5h ago',
-    content:
-      'Spotted a rare species of kingfisher near Site B today. A good sign of improving biodiversity. #conservation #mangroves',
-  },
-  {
-    user: 'Eco Corp.',
-    handle: 'Company',
-    avatarId: 'avatar-3',
-    time: '1d ago',
-    content:
-      'We are proud to announce our partnership with BlueVault to offset our carbon footprint through mangrove restoration. #sustainability',
-  },
-];
+import { useSocialFeed } from '@/context/social-feed-context';
+import { formatDistanceToNow } from 'date-fns';
 
 export default function SocialFeed() {
+  const { feedItems } = useSocialFeed();
+
   return (
     <Card className="shadow-lg">
       <CardHeader>
@@ -45,7 +22,7 @@ export default function SocialFeed() {
         <CardDescription>A live feed of updates from all stakeholders.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px] pr-4">
+        <ScrollArea className="h-[400px] pr-4">
           <div className="space-y-6">
             {feedItems.map((item, index) => {
               const avatar = placeholderImages.find(
@@ -69,7 +46,9 @@ export default function SocialFeed() {
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div className="font-semibold">{item.user}</div>
-                      <div className="text-xs text-muted-foreground">{item.time}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {formatDistanceToNow(item.timestamp, { addSuffix: true })}
+                      </div>
                     </div>
                     <p className="text-xs text-muted-foreground">@{item.handle.replace(' ', '')}</p>
                     <p className="mt-2 text-sm">{item.content}</p>
