@@ -27,6 +27,8 @@ import {
   FileJson,
   Gem,
 } from 'lucide-react';
+import Link from 'next/link';
+import { useToast } from '@/hooks/use-toast';
 
 
 const DroneIcon = () => (
@@ -112,11 +114,19 @@ export function ProjectOverviewCard({
   nextDistribution,
   autoMintEnabled
 }: ProjectOverviewCardProps) {
+  const { toast } = useToast();
   const monitoringStatusColor =
     monitoringStatus === 'Verified' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
     const contractStatusColor =
     contractStatus === 'Active' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
     const creditProgress = (creditsMinted / creditsTotal) * 100;
+
+    const handleMintCredits = () => {
+        toast({
+            title: "Minting Credits",
+            description: `Successfully minted ${ (creditsTotal - creditsMinted).toLocaleString() } new credits for the ${projectName} project.`,
+        });
+    }
 
   return (
     <Card className="shadow-md">
@@ -242,13 +252,17 @@ export function ProjectOverviewCard({
         </div>
       </CardContent>
       <CardFooter className="gap-2 border-t pt-6 mt-4">
-        <Button variant="outline" className="w-full">
-          <Eye className="mr-2 h-4 w-4" /> View Detailed Report
+        <Button variant="outline" className="w-full" asChild>
+          <Link href="/dashboard/mrv-report">
+            <Eye className="mr-2 h-4 w-4" /> View Detailed Report
+          </Link>
         </Button>
-        <Button variant="outline" className="w-full">
-          <FileJson className="mr-2 h-4 w-4" /> View on Chain
+        <Button variant="outline" className="w-full" asChild>
+          <Link href="https://etherscan.io/" target="_blank">
+            <FileJson className="mr-2 h-4 w-4" /> View on Chain
+          </Link>
         </Button>
-         <Button className="w-full">
+         <Button className="w-full" onClick={handleMintCredits}>
           <Gem className="mr-2 h-4 w-4" /> Mint Credits
         </Button>
       </CardFooter>
