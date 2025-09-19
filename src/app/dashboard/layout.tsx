@@ -122,7 +122,7 @@ export default function DashboardLayout({
             );
         case 'ngo-manager':
              return allNavItems.filter(item => 
-                !['company', 'government-admin', 'companies', 'field-officers', 'ngos'].includes(item.role) && item.role !== 'ngos'
+                ['dashboard', 'ngo-manager', 'marketplace'].includes(item.role)
             );
         case 'company':
             return allNavItems.filter(item => 
