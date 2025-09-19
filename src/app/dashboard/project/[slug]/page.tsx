@@ -10,11 +10,27 @@ import {
   ChartTooltipContent,
   ChartConfig,
   ChartLegendContent,
+  Skeleton,
 } from '@/components/ui';
 import { placeholderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { useParams, notFound } from 'next/navigation';
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import dynamic from 'next/dynamic';
+
+const BarChart = dynamic(
+  () => import('recharts').then(mod => mod.BarChart),
+  {
+    loading: () => <Skeleton className="h-[300px] w-full" />,
+    ssr: false,
+  }
+);
+const Bar = dynamic(() => import('recharts').then(mod => mod.Bar), { ssr: false });
+const CartesianGrid = dynamic(() => import('recharts').then(mod => mod.CartesianGrid), { ssr: false });
+const Legend = dynamic(() => import('recharts').then(mod => mod.Legend), { ssr: false });
+const Tooltip = dynamic(() => import('recharts').then(mod => mod.Tooltip), { ssr: false });
+const XAxis = dynamic(() => import('recharts').then(mod => mod.XAxis), { ssr: false });
+const YAxis = dynamic(() => import('recharts').then(mod => mod.YAxis), { ssr: false });
+
 
 const projects = [
   {
